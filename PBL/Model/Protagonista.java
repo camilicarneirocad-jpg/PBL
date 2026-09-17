@@ -1,3 +1,4 @@
+package Model;
 
 public class Protagonista extends Personagem {
     private int opcaoEscolhida;
@@ -6,38 +7,27 @@ public class Protagonista extends Personagem {
     private int idElenco;
 
 
-    public Protagonista(int opcaoEscolhida,int idRoupa,int idElenco) {
+    public Protagonista(String nome, int id, int opcaoEscolhida, int idRoupa, int idElenco) {
+        super(nome, id);
         this.opcaoEscolhida = opcaoEscolhida;
         this.idRoupa = idRoupa;
-        this.idElenco= idElenco;
-        this.antipatia=0;
-    }
-    
-
-    public int getaintipatia() {
-        return nome;
-    }
-    public int getopcaoEscolhida() {
-        return opcaoEscolhida;
-    }
-    public int getidRoupa() {
-        return idRoupa;
-    }
-    public int getidElenco() {
-        return idElenco;
-    }
-
-    public void setidRoupa(int idRoupa) {
-        this.idRoupa = idRoupa;
-    }
-    public void setidElenco(int idElenco){
         this.idElenco = idElenco;
+        this.antipatia = 0;
     }
-    public void setopcaoEscolhida(int opcaoEscolhida){
-        this.opcaoEscolhida = opcaoEscolhida;
-    }
-    public void incrementarAntipatia(int qtd){
-        this.antipatia=this.antipatia+qtd;
+
+
+    public int getAntipatia() { return antipatia; }
+    public int getOpcaoEscolhida() { return opcaoEscolhida; }
+    public int getIdRoupa() { return idRoupa; }
+    public int getIdElenco() { return idElenco; }
+
+
+    public void setIdRoupa(int idRoupa) { this.idRoupa = idRoupa; }
+    public void setIdElenco(int idElenco) { this.idElenco = idElenco; }
+    public void setOpcaoEscolhida(int opcaoEscolhida) { this.opcaoEscolhida = opcaoEscolhida; }
+
+    public void incrementarAntipatia(int qtd) {
+        this.antipatia += qtd;
     }
 
 

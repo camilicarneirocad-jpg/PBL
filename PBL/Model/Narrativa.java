@@ -1,3 +1,5 @@
+package Model;
+
 public class Narrativa extends Fala {
     private int idProximaFala;
 

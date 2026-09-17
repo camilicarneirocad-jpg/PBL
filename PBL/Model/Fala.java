@@ -1,22 +1,41 @@
+package Model;
+
 public abstract class Fala {
     private int idFala;
-    private boolean eNarrativa;
     private String texto;
     private String nomePersonagem;
+    private Secundario solteiraAlvo;
+    private int idFalaAtual;
+    private boolean eNarrativa;
 
-    public Fala(int id, String texto, String nomePersonagem, Secundario solteiraAlvo, int idFalaAtual,boolean eNarrativa) {
-        this.id = id;
+    public Fala(int idFala, String texto) {
+        this.idFala = idFala;
+        this.texto = texto;
+        this.eNarrativa = true;
+    }
+
+    public Fala(int idFala, String texto, String nomePersonagem, Secundario solteiraAlvo) {
+        this.idFala = idFala;
         this.texto = texto;
         this.nomePersonagem = nomePersonagem;
         this.solteiraAlvo = solteiraAlvo;
-        this.idFalaAtual=0;
-        this.eNarrativa=eNarrativa;
+        this.eNarrativa = false;
     }
 
-    public int getId() { return id; }
+    public Fala(int idFala, String texto, String nomePersonagem, Secundario solteiraAlvo, int idFalaAtual, boolean eNarrativa) {
+        this.idFala = idFala;
+        this.texto = texto;
+        this.nomePersonagem = nomePersonagem;
+        this.solteiraAlvo = solteiraAlvo;
+        this.idFalaAtual = idFalaAtual;
+        this.eNarrativa = eNarrativa;
+    }
+
+    public int getId() { return idFala; }
     public String getTexto() { return texto; }
     public String getNomePersonagem() { return nomePersonagem; }
     public Secundario getSolteiraAlvo() { return solteiraAlvo; }
-    public int geteNArrativa() { return eNArrativa; }
+    public int getIdFalaAtual() { return idFalaAtual; }
+    public boolean isENarrativa() { return eNarrativa; }
 
 }

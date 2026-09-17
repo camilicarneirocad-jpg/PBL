@@ -1,3 +1,5 @@
+package Model;
+
 import java.util.Map;
 
 public class Menu {
@@ -12,15 +14,12 @@ public class Menu {
     public String getTitulo() {
         return titulo;
     }
-
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
-
     public Map<Integer, String> getOpcoes() {
         return opcoes;
     }
-
     public void setOpcoes(Map<Integer, String> opcoes) {
         this.opcoes = opcoes;
     }

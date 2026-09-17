@@ -1,3 +1,7 @@
+package Model;
+
+import java.util.List;
+
 public class Cena {
     private int id;
     private String imagemCenario;
@@ -12,8 +16,12 @@ public class Cena {
         this.idPrimeiraFala = idPrimeiraFala;
         this.falas = falas;
     }
-    public int getfalas() { return falas; }
-    public int falas(List<Cena> falas) { 
-        this.falas = falas; 
-        }
+
+    public int getId() { return id; }
+    public String getImagemCenario() { return imagemCenario; }
+    public String getTrilhaSonora() { return trilhaSonora; }
+    public int getIdPrimeiraFala() { return idPrimeiraFala; }
+    public List<Fala> getFalas() { return falas; }
+
+    public void setFalas(List<Fala> falas) { this.falas = falas; }
 }
