@@ -2,10 +2,12 @@ public class Cena {
     private int id;
     private String imagemCenario;
     private String trilhaSonora;
+    private int idPrimeiraFala;
     private int idUltimaaFala;
     private int idProximacena;
     private List<Fala> falas;
     private List<Secundario> participantes;
+    private boolean cenaFinalizada;
 
     public Cena(int id, String imagemCenario, String trilhaSonora, int idUltimaFala,List<Fala> falas) {
         this.id = id;

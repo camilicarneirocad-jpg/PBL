@@ -75,10 +75,21 @@ public class ServiceDialogo {
         }
         return falaAtual;
     }
-
-     public void verificarProxDialogo(Fala atual, int idProxFala) {
-        atual.setIdProximaFala(idProxFala);
-    }
+     
+public void verificarProxDialogo(Fala atual, Cena cena) {
+    List<Fala> falasDaCena = cena.getFalas();
+    for (int i = 0; i < falasDaCena.size(); i++) {
+        if (falasDaCena.get(i).getIdFala() == atual.getIdFala()) {
+            if (i + 1 < falasDaCena.size()) {
+                int idProximaFala = falasDaCena.get(i + 1).getIdFala();
+                atual.setIdProximaFala(idProximaFala);
+                return;
+            }
+        }
+    } 
+    // Caso seja a última fala da cena e não tenha para onde ir
+    atual.setIdProximaFala(-1); 
+}
 
     public void verificarProxDialogo(Fala fAtual, int idFala1, int idFala2, Personagem secundario) {
         if (secundario.getAfinidade() < 50) {

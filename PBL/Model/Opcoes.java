@@ -1,7 +1,7 @@
 public class Opcoes{
     private int id;
     private String nome;
-    private String resposta curta;
+    private String respostaCurta;
     private Map<Personagem, Integer> impactos;
     private int idExpressao;
     private int qtdAtipatia;

@@ -12,10 +12,10 @@ public class ControladorDialogos {
         this.jogo = jogo;
     }
 
-    Fala falaInicial=service.buscarFalaPorId(1);
+    Fala falaInicial=cena.idPrimeiraFala;
 
     private int decidirProximaFalaDinamica(Fala falaAtual) {
-        if
+        if()
     }
 
     public void iniciar(Fala falaInicial) {

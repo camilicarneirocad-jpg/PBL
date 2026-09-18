@@ -1,44 +1,38 @@
-import java.util.Map;
+import java.util.List;
 
 public class Dialogo extends Fala {
-    private list<Opcoes> opcoes;
-    private Map<Integer, String> respostasCurtas;
-    private Map<Secundario, Map<Integer, Integer>> pontosPorPersonagem;
+
+    private List<Opcoes> opcoes;
     private int piorOpcao;
 
-    public Dialogo(int id, String texto, String nomePersonagem, Secundario solteiraAlvo,
-                   Map<Integer, String> opcoes,
-                   Map<Integer, String> respostasCurtas, 
-                   Map<Secundario, Map<Integer, Integer>> pontosPorPersonagem,
-                   int piorOpcao) {
-        super(id, texto, nomePersonagem, solteiraAlvo);
+    public Dialogo(
+            int idFala,
+            String texto,
+            String nomePersonagem,
+            Secundario solteiraAlvo,
+            int idProximaFala,
+            boolean eNarrativa,
+            List<Opcoes> opcoes,
+            int piorOpcao
+    ) {
+        super(idFala, texto, nomePersonagem, solteiraAlvo, idProximaFala, eNarrativa);
         this.opcoes = opcoes;
-        this.respostasCurtas = respostasCurtas;
-        this.pontosPorPersonagem = pontosPorPersonagem;
         this.piorOpcao = piorOpcao;
     }
 
-    public Map<Integer, String> getOpcoes() { 
-        return opcoes; 
+    public List<Opcoes> getOpcoes() {
+        return opcoes;
     }
 
-    public Map<Integer, Integer> getDestinos() { 
-        return destinos; 
+    public void setOpcoes(List<Opcoes> opcoes) {
+        this.opcoes = opcoes;
     }
 
-    public String getRespostaCurta(int escolha) { 
-        return respostasCurtas.get(escolha); 
+    public int getPiorOpcao() {
+        return piorOpcao;
     }
 
-    public Map<Secundario, Map<Integer, Integer>> getPontosPorPersonagem() { 
-        return pontosPorPersonagem; 
-    }
-
-    public int getPiorOpcao() { 
-        return piorOpcao; 
-    }
-
-    public void setDestinos(Map<Integer, Integer> destinos){
-        this.destinos=destinos;
+    public void setPiorOpcao(int piorOpcao) {
+        this.piorOpcao = piorOpcao;
     }
 }

@@ -3,6 +3,7 @@ public abstract class Fala {
     private boolean eNarrativa;
     private String texto;
     private String nomePersonagem;
+    private int idProximaFala;
 
     public Fala(int id, String texto, String nomePersonagem, Secundario solteiraAlvo, int idFalaAtual,boolean eNarrativa) {
         this.id = id;

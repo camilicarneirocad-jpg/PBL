@@ -18,7 +18,7 @@ public class Capitulo {
     public int getIdCapitulo() { return idCapitulo; }
     public int getcenas() { return cenas; }
     public int setcenas(List<Cena> cenas) { 
-        this.cenas = cenas; 
+    this.cenas = cenas; 
         }
     public String getTitulo() { return titulo; }
     public int getIdPrimeiraFala() { return idPrimeiraFala; }
