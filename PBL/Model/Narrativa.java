@@ -8,5 +8,9 @@ public class Narrativa extends Fala {
         this.idProximaFala = idProximaFala;
     }
 
+    public Narrativa(int id, String texto, String nomePersonagem, Secundario solteiraAlvo) {
+        super(id, texto, nomePersonagem, solteiraAlvo);
+    }
+
     public int getIdProximaFala() { return idProximaFala; }
 }

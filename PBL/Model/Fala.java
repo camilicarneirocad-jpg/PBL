@@ -32,10 +32,11 @@ public abstract class Fala {
     }
 
     public int getId() { return idFala; }
+    public int getIdFala() { return idFala; }
+    public int getIdProximaFala() { return idFala + 1; }
     public String getTexto() { return texto; }
     public String getNomePersonagem() { return nomePersonagem; }
     public Secundario getSolteiraAlvo() { return solteiraAlvo; }
     public int getIdFalaAtual() { return idFalaAtual; }
     public boolean isENarrativa() { return eNarrativa; }
-
 }

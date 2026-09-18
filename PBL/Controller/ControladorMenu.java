@@ -1,32 +1,28 @@
+package Controller;
+
+import Model.Menu;
+
+import java.util.Map;
+import java.util.Scanner;
+
 public class ControladorMenu {
-    private Menu menu;
-    private MenuView view;
-    private JogoService = service;
-    private JogoView= jview;
-    private boolean rodando;
+    private Scanner scanner = new Scanner(System.in);
 
-    public ControladorMenu(Menu menu, MenuView view) {
-        this.menu = menu;
-        this.view = view;
-        this.rodando = true;
-    }
-
-    public void iniciar() {
-        while (rodando) {
-            view.exibirMenu(menu);
-            int escolha = view.lerOpcao(menu);
-
-            switch (escolha) {
-                case 1:
-                    service.iniciarNovoJogo();
-                    break;
-                case 2:
-                    jview.mostrarCreditos();
-                    break;
-                case 3:
-                    System.out.println("Encerrando o jogo");
-                    rodando = false; 
-                    break;
-            }
+    public int exibirMenu(Menu menu) {
+        System.out.println("\n==================================");
+        System.out.println("       " + menu.getTitulo().toUpperCase());
+        System.out.println("==================================");
+        for (Map.Entry<Integer, String> opcao : menu.getOpcoes().entrySet()) {
+            System.out.println("[" + opcao.getKey() + "] " + opcao.getValue());
         }
+        System.out.print("\nOpção: ");
+
+        int escolha = -1;
+        if (scanner.hasNextInt()) {
+            escolha = scanner.nextInt();
+        } else {
+            scanner.next();
+        }
+        return escolha;
     }
+}

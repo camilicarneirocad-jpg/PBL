@@ -1,3 +1,7 @@
+package Repository;
+
+import Model.Narrativa;
+
 public class RoteiroMasculinoRepository extends RoteiroRepository {
 
     public RoteiroMasculinoRepository() {
@@ -5,6 +9,7 @@ public class RoteiroMasculinoRepository extends RoteiroRepository {
     }
 
     private void carregarDadosMasculinos() {
-        bancoDeFalas.put(101, new Narrativa(101, "Texto da rota masculina...", 102));
+        Narrativa fala101 = new Narrativa(101, "Texto da rota masculina...", 102);
+        bancoDeFalas.put(fala101.getIdFala(), fala101);
     }
 }

@@ -5,7 +5,7 @@ public class Secundario extends Personagem {
     private int exigencia;
 
     public Secundario(String nome, int id, int afinidade, int exigencia) {
-        super(nome, id);
+        super(nome, id, afinidade);
         this.afinidade = afinidade;
         this.exigencia = exigencia;
     }

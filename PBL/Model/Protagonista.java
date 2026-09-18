@@ -7,8 +7,8 @@ public class Protagonista extends Personagem {
     private int idElenco;
 
 
-    public Protagonista(String nome, int id, int opcaoEscolhida, int idRoupa, int idElenco) {
-        super(nome, id);
+    public Protagonista(String nome, int id, int afinidade, int opcaoEscolhida, int idRoupa, int idElenco) {
+        super(nome, id, afinidade);
         this.opcaoEscolhida = opcaoEscolhida;
         this.idRoupa = idRoupa;
         this.idElenco = idElenco;

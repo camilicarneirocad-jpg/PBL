@@ -22,4 +22,8 @@ public class Opcoes{
     public String getRespostaCurta() { return respostaCurta; }
     public Map<Personagem, Integer> getImpactos() { return impactos; }
     public int getIdExpressao() { return idExpressao; }
+
+    public int getTexto() {
+        return this.idExpressao;
+    }
 }

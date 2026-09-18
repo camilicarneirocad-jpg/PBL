@@ -9,7 +9,15 @@ public class Cena {
     private int idPrimeiraFala;
     private List<Fala> falas;
 
-    public Cena(int id, String imagemCenario, String trilhaSonora, int idPrimeiraFala,List<Fala> falas) {
+    public Cena(int id, String imagemCenario, String trilhaSonora, List<Fala> falas) {
+        this.id = id;
+        this.imagemCenario = imagemCenario;
+        this.trilhaSonora = trilhaSonora;
+        this.idPrimeiraFala = (falas != null && !falas.isEmpty()) ? falas.get(0).getId() : 1;
+        this.falas = falas;
+    }
+
+    public Cena(int id, String imagemCenario, String trilhaSonora, int idPrimeiraFala, List<Fala> falas) {
         this.id = id;
         this.imagemCenario = imagemCenario;
         this.trilhaSonora = trilhaSonora;
