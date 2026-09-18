@@ -4,5 +4,7 @@ public class Opcoes{
     private String resposta curta;
     private Map<Personagem, Integer> impactos;
     private int idExpressao;
+    private int qtdAtipatia;
+    private boolean aumentaAntipatia;
 
 }

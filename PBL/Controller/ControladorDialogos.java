@@ -1,12 +1,33 @@
-public class ControladorDialogos{
-  private RoteiroFemininoRepository femrepository;
-  private RoteiroMasculinoRepository mascrepository;
-  private Partida partida;
-  private String idelenco=getidElenco();
+import java.util.List;
 
-  if(idelenco==1){
-    
-  }
-  
-  
-}
+public class ControladorDialogos {
+    private ServiceDialogo service;
+    private JogoView view;
+    private Jogo jogo;
+    private Cena cena;
+
+    public ControladorDialogos(Cena cena, JogoView view, Jogo jogo) {
+        this.cena = cena;
+        this.view = view;
+        this.jogo = jogo;
+    }
+
+    Fala falaInicial=service.buscarFalaPorId(1);
+
+    private int decidirProximaFalaDinamica(Fala falaAtual) {
+        if
+    }
+
+    public void iniciar(Fala falaInicial) {
+        this.service = new ServiceDialogo(cena, falaInicial, view);
+        Fala falaAtual = falaInicial;
+        while (falaAtual != null) {
+            if (falaAtual.getENarrativa() == 1) {
+                falaAtual = service.passarFalas(falaAtual);
+            } else {
+                falaAtual = service.passarDialogo(falaAtual, jogo);
+            }
+
+        }
+    }
+

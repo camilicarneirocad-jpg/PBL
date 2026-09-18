@@ -1,0 +1,152 @@
+import java.util.List;
+import java.util.ArrayList;
+
+public class ServiceCena {
+    
+    public void verificarProximaCena(Cena cAtual, int idCena1, int idCena2, int idCena3, int idCena4, Jogo jogo) {
+        Personagem personagemEliminado = null;
+        Integer menorAfinidade = null;
+        
+        for (Personagem personagem : jogo.getSecundarios()) {
+            if (personagem != null) {
+                if (menorAfinidade == null || menorAfinidade > personagem.getAfinidade()) {
+                    menorAfinidade = personagem.getAfinidade();
+                    personagemEliminado = personagem;
+                }
+            }
+        }
+
+        if (personagemEliminado != null) {
+            switch (personagemEliminado.getId()) {
+                case 0:
+                    cAtual.setidProximacena(idCena1);
+                    break;
+                case 1:
+                    cAtual.setidProximacena(idCena2);
+                    break;
+                case 2:
+                    cAtual.setidProximacena(idCena3);
+                    break;
+                case 3:
+                    cAtual.setidProximacena(idCena4);
+                    break;
+                default:
+                    System.out.println("Opção inválida.");
+                    break;
+            }
+        }
+    }
+
+    public Item ganharItem(Personagem personagem, Iventario inventario, JogoView view) {
+        Item item = null;
+        switch (personagem.getId()) {
+            case 0:
+                item = new Item(1, "Pigente");
+                inventario.getItens().add(item);
+                view.exibirTexto(item.getNome() + " adicionado ao iventário");
+                break;
+            case 1:
+                item = new Item(2, "Caderno");
+                inventario.getItens().add(item);
+                view.exibirTexto(item.getNome() + " adicionado ao iventário");
+                break;
+            case 2:
+                item = new Item(3, "Marcador");
+                inventario.getItens().add(item);
+                view.exibirTexto(item.getNome() + " adicionado ao iventário");
+                break;
+            case 3:
+                item = new Item(4, "Caneta");
+                inventario.getItens().add(item);
+                view.exibirTexto(item.getNome() + " adicionada ao iventário");
+                break;
+            default:
+                System.out.println("Opção inválida.");
+                break;
+        }
+        return item;
+    }
+
+    public void verificarProximaCena(Cena cAtual, int idCena1, int idCena2, int idCena3, int idCena4, Jogo jogo) {
+        Personagem personagemComAfinidade = null;
+        Integer maiorAfinidade = null;
+        
+        for (Personagem personagem : jogo.getSecundarios()) {
+            if (personagem != null) {
+                if (maiorAfinidade == null || maiorAfinidade < personagem.getAfinidade()) {
+                    maiorAfinidade = personagem.getAfinidade();
+                    personagemComAfinidade = personagem;
+                }
+            }
+        }
+
+        if (personagemComAfinidade != null) {
+            switch (personagemComAfinidade.getId()) {
+                case 0:
+                    cAtual.setidProximacena(idCena1);
+                    break;
+                case 1:
+                    cAtual.setidProximacena(idCena2);
+                    break;
+                case 2:
+                    cAtual.setidProximacena(idCena3);
+                    break;
+                case 3:
+                    cAtual.setidProximacena(idCena4);
+                    break;
+                default:
+                    System.out.println("Opção inválida.");
+                    break;
+            }
+        }
+    }
+
+
+
+        if (jogo.getSecundarios()[3] != null && !jogo.getSecundarios()[3].equals(eliminado)) {
+            Fala falaBase = (proxFalaAtual != 0) ? buscarFalaPorId(proxFalaAtual, cena) : fAtual;
+            verificarProxDialogo(falaBase, idFala10, idFala11, idFala12, jogo.getSecundarios()[3]);
+        }
+    }
+
+    public void verificarProximaCena(Cena cAtual, int idCena1, int idCena2, Personagem protagonista) {
+        if (protagonista.getAntipatia() > 60) {
+            cAtual.setidProximacena(idCena1);
+        } else {
+            cAtual.setidProximacena(idCena2);
+        }
+    }
+
+    public void verificarProximaCena(Cena cAtual, int idCena1, int idCena2, int idCena3, int idCena4, int idCena5, int idCena6, Jogo jogo, Personagem eliminado) {
+        int contador80 = 0;
+        Personagem personagemCom80 = null;
+
+        for (Personagem p : jogo.getSecundarios()) {
+            if (p != null && !p.equals(eliminado)) {
+                if (p.getAfinidade() >= 80) {
+                    contador80++;
+                    personagemCom80 = p;
+                }
+            }
+        }
+
+        if (contador80 == 1 && personagemCom80 != null) {
+            if (personagemCom80.getId() == 0) {
+                cAtual.setidProximacena(idCena1);
+            } else if (personagemCom80.getId() == 1) {
+                cAtual.setidProximacena(idCena2);
+            } else if (personagemCom80.getId() == 2) {
+                cAtual.setidProximacena(idCena3);
+            } else if (personagemCom80.getId() == 3) {
+                cAtual.setidProximacena(idCena4);
+            }
+        } else if (contador80 > 1) {
+            cAtual.setidProximacena(idCena5);
+        } else {
+            cAtual.setidProximacena(idCena6);
+        }
+    }
+
+    public void PassarCena(){
+        
+    }
