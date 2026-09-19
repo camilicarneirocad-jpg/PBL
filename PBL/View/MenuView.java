@@ -27,6 +27,7 @@ public class MenuView {
             
             if (leitor.hasNextInt()) {
                 opcao = leitor.nextInt();
+                leitor.nextLine();
                 
                 // vê se a entrada é um id de uma das opções do menu
                 if (menu.getOpcoes().containsKey(opcao)) {

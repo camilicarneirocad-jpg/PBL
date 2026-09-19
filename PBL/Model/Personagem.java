@@ -1,17 +1,16 @@
 public class Personagem {
-    
     private String nome;
     private int id;
-
 
     public Personagem(String nome, int id) {
         this.nome = nome;
         this.id = id;
     }
-    
+
     public String getNome() {
         return nome;
     }
+
     public int getId() {
         return id;
     }
@@ -20,8 +19,7 @@ public class Personagem {
         this.nome = nome;
     }
 
-    public void setid(int id) {
-        this.id= id;
+    public void setId(int id) {
+        this.id = id;
     }
-
 }

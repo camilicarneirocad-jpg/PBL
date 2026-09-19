@@ -7,176 +7,131 @@ public class ServiceDialogo {
     private JogoView view;
     private Jogo jogo;
     
-    public ServiceDialogo(Cena cena, Fala falaAtual, JogoView view) {
+    public ServiceDialogo(Cena cena, Fala falaAtual, JogoView view, Jogo jogo) {
         this.cena = cena;
         this.falaAtual = falaAtual;
-        this.falas = cena.getFalas();
+        this.falas = (cena != null) ? cena.getFalas() : null;
         this.view = view;
+        this.jogo = jogo;
     }
 
     public Fala passarFalas(Fala falaAtual) {
-        exibirFala(falaAtual.getTexto(), falaAtual.getNome());
-
+        view.exibirTexto(falaAtual.getTexto());
         view.receberEnter();
 
-        int idProxima = falaAtual.getIdProximaFala();
-        falaAtual=null;
+        Integer idProxima = falaAtual.getIdProximaFala();
+        if (idProxima == null || falas == null) return null;
+
         for (Fala fala : falas) {
             if (fala.getIdFala() == idProxima) {
-                falaAtual = fala;
-                return falaAtual;
-            }
-        }
-        return falaAtual;
-    }
-
-    public void processarInfo(int escolha, Fala falaAtual, Jogo jogo, Protagonista prota) {
-        for(Opcao op1:falaAtual.getOpcoes()){
-            if(op1.aumentaAntipatia){
-                prota.setantipatia(op.qtdAtipatia);
-            }
-        }
-        
-        for (Personagem personagem : jogo.getSecundarios()) {
-            for (Opcao op2 : falaAtual.getOpcoes()) {
-                if (op2.getId() == escolha) {
-                    Integer impacto = op2.getImpactos().get(personagem.getNome());
-                    if (impacto != null) {
-                        personagem.setAfinidade(personagem.getAfinidade() + impacto);
-                        if(impacto>=0){
-                            String mensagem=personagem +"+"+impacto;
-                        }
-                        else{
-                            String mensagem=personagem +"-"+impacto;
-                        }
-                        exibirTexto(mensagem);
-                    }
-                }
-            }
-        }
-    }
-
-    public Fala passarDialogo(Fala falaAtual, Jogo jogo) {
-        exibirFala(falaAtual.getTexto(), falaAtual.getNome());
-        for (Opcao op : falaAtual.getOpcoes()) {
-            String opcaoTexto = op.getId() + "- " + op.getTexto();
-            exibirTexto(opcaoTexto);
-        }
-        
-        int escolha = receberOpcaoNumerica();
-        processarInfo(escolha, falaAtual, jogo, jogo.getProtagonista());
-
-        int idProxima = falaAtual.getIdProximaFala();
-        falaAtual=null;
-        for (Fala fala : falas) {
-            if (fala.getIdFala() == idProxima) {
-                falaAtual = fala;
-            }
-        }
-        return falaAtual;
-    }
-     
-public void verificarProxDialogo(Fala atual, Cena cena) {
-    List<Fala> falasDaCena = cena.getFalas();
-    for (int i = 0; i < falasDaCena.size(); i++) {
-        if (falasDaCena.get(i).getIdFala() == atual.getIdFala()) {
-            if (i + 1 < falasDaCena.size()) {
-                int idProximaFala = falasDaCena.get(i + 1).getIdFala();
-                atual.setIdProximaFala(idProximaFala);
-                return;
-            }
-        }
-    } 
-    // Caso seja a última fala da cena e não tenha para onde ir
-    atual.setIdProximaFala(-1); 
-}
-
-    public void verificarProxDialogo(Fala fAtual, int idFala1, int idFala2, Personagem secundario) {
-        if (secundario.getAfinidade() < 50) {
-            fAtual.setIdProximaFala(idFala1);
-        } else {
-            fAtual.setIdProximaFala(idFala2);
-        }
-    }
-
-        public void verificarProxDialogo(Fala fAtual, int idFala1, int idFala2, int idFala3, int idFala4, Personagem eliminado) {
-        List<Integer> idFalas = new ArrayList<>();
-        idFalas.add(idFala1);
-        idFalas.add(idFala2);
-        idFalas.add(idFala3);
-        idFalas.add(idFala4);
-        
-        idFalas.remove(eliminado.getId());
-        
-        if (idFalas.size() > 0) {
-            fAtual.setIdProximaFala(idFalas.get(0));
-        }
-    }
-
-    public void verificarProxDialogo(Fala fAtual, int idCena1, int idCena2, int idCena3, int idCena4, Personagem eliminado, Jogo jogo) {
-        switch (eliminado.getId()) {
-            case 0:
-                fAtual.setIdProximaFala(idCena1);
-                break;
-            case 1:
-                fAtual.setIdProximaFala(idCena2);
-                break;
-            case 2:
-                fAtual.setIdProximaFala(idCena3);
-                break;
-            case 3:
-                fAtual.setIdProximaFala(idCena4);
-                break;
-            default:
-                System.out.println("Opção inválida.");
-                break;
-        }
-    }
-
-    public int verificarProxDialogo(Fala fAtual, int idFala1, int idFala2, int idFala3, Personagem personagem) {
-        if (personagem.getAfinidade() < 50) {
-            fAtual.setIdProximaFala(idFala1);
-            return idFala1;
-        } else if (personagem.getAfinidade() >= 50 && personagem.getAfinidade() < 70) {
-            fAtual.setIdProximaFala(idFala2);
-            return idFala2;
-        } else {
-            fAtual.setIdProximaFala(idFala3);
-            return idFala3;
-        }
-    }
-
-    private Fala buscarFalaPorId(int id, Cena cena) {
-        for (Fala f : cena.getFalas()) {
-            if (f.getIdFala() == id) {
-                return f;
+                return fala;
             }
         }
         return null;
     }
 
-    public void verificarProxDialogo(Fala fAtual, int idFala1, int idFala2, int idFala3, 
-                                     int idFala4, int idFala5, int idFala6, 
-                                     int idFala7, int idFala8, int idFala9, 
-                                     int idFala10, int idFala11, int idFala12, 
-                                     Personagem eliminado, Jogo jogo, Cena cena) {
-        
-        int proxFalaAtual = 0;
+public void processarInfo(int escolha, Fala falaAtual, Protagonista prota) {
+    if (!(falaAtual instanceof Dialogo)) {
+        return;
+    }
 
-        if (jogo.getSecundarios()[0] != null && !jogo.getSecundarios()[0].equals(eliminado)) {
-            proxFalaAtual = verificarProxDialogo(fAtual, idFala1, idFala2, idFala3, jogo.getSecundarios()[0]);
+    Dialogo dialogo = (Dialogo) falaAtual;
+    if (dialogo.getOpcoes() == null) {
+        return;
+    }
+
+    for (Opcoes opcao : dialogo.getOpcoes()) {
+        if (opcao.isAumentaAntipatia()) {
+            prota.incrementarAntipatia(opcao.getQtdAtipatia());
         }
+    }
 
-        if (jogo.getSecundarios()[1] != null && !jogo.getSecundarios()[1].equals(eliminado)) {
-            Fala falaBase = (proxFalaAtual != 0) ? buscarFalaPorId(proxFalaAtual, cena) : fAtual;
-            proxFalaAtual = verificarProxDialogo(falaBase, idFala4, idFala5, idFala6, jogo.getSecundarios()[1]);
+    Opcoes opcaoEscolhida = null;
+    for (Opcoes opcao : dialogo.getOpcoes()) {
+        if (opcao.getId() == escolha) {
+            opcaoEscolhida = opcao;
+            break;
         }
+    }
 
-        if (jogo.getSecundarios()[2] != null && !jogo.getSecundarios()[2].equals(eliminado)) {
-            Fala falaBase = (proxFalaAtual != 0) ? buscarFalaPorId(proxFalaAtual, cena) : fAtual;
-            proxFalaAtual = verificarProxDialogo(falaBase, idFala7, idFala8, idFala9, jogo.getSecundarios()[2]);
+    if (opcaoEscolhida != null && opcaoEscolhida.getImpactos() != null) {
+        for (Map.Entry<Secundario, Integer> entry : opcaoEscolhida.getImpactos().entrySet()) {
+            Secundario secundarioNaOpcao = entry.getKey();
+            int impacto = entry.getValue();
+
+            for (Secundario personagemJogo : jogo.getSecundarios()) {
+                if (personagemJogo.getId() == secundarioNaOpcao.getId()) {
+                    personagemJogo.setAfinidade(personagemJogo.getAfinidade() + impacto);
+
+                    String sinal = (impacto >= 0) ? "+" : "";
+                    view.exibirTexto(personagemJogo.getNome() + " " + sinal + impacto);
+                    break;
+                }
+            }
         }
-
-    
+    }
 }
+
+    public Fala buscarFalaPorIds(List<Capitulo> capitulos, int idCapitulo, int idCena, int idFala) {
+        if (capitulos == null) return null;
+
+        for (Capitulo cap : capitulos) {
+            if (cap.getIdCapitulo() == idCapitulo) {
+                if (cap.getCenas() != null) {
+                    for (Cena cena : cap.getCenas()) {
+                        if (cena.getId() == idCena) {
+                            if (cena.getFalas() != null) {
+                                for (Fala fala : cena.getFalas()) {
+                                    if (fala.getIdFala() == idFala) {
+                                        return fala;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public void verificarProxDialogo(Capitulo capitulo, int idCena, int idFalaAtual, Secundario maiorAfinidade) {
+        Fala fala = buscarFalaPorIds(List.of(capitulo), capitulo.getIdCapitulo(), idCena, idFalaAtual);
+        if (fala == null) return;
+
+        if (capitulo.getIdCapitulo() == 9 && idCena == 1) {
+            String nomeMaior = (maiorAfinidade != null) ? maiorAfinidade.getNome().toLowerCase() : "";
+            boolean isAngela = nomeMaior.equals("angela");
+            boolean isMonica = nomeMaior.equals("monica");
+            boolean isMarcia = nomeMaior.equals("marcia");
+            boolean isGabriela = nomeMaior.equals("gabriela");
+
+            if (idFalaAtual == 2) {
+                if (isAngela) {
+                    fala.setIdProximaFala(4);
+                } else {
+                    fala.setIdProximaFala(3);
+                }
+            } else if (idFalaAtual == 3 || idFalaAtual == 4) {
+                if (isMonica) {
+                    fala.setIdProximaFala(6);
+                } else {
+                    fala.setIdProximaFala(5);
+                }
+            } else if (idFalaAtual == 5 || idFalaAtual == 6) {
+                if (isMarcia) {
+                    fala.setIdProximaFala(8);
+                } else {
+                    fala.setIdProximaFala(7);
+                }
+            } else if (idFalaAtual == 7 || idFalaAtual == 8) {
+                if (isGabriela) {
+                    fala.setIdProximaFala(10);
+                } else {
+                    fala.setIdProximaFala(9);
+                }
+            }
+        }
+    }
+
 }

@@ -1,76 +1,61 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class JogoService {
     
-    private Protagonista protagonista;
-    private JogoService service;
-    private JogoRepository repository;
-    private Capitulo capitulo;
+    private Jogo jogo;
+    private JogoView view;
 
-    public JogoService(JogoRepository repository, Capitulo capitulo, JogoService service, Protagonista protagonista) {
-        this.repository = repository;
-        this.capitulo=capitulo;
-        this.service=service;
-        this.protagonista=protagonista;
+    public JogoService(Jogo jogo, JogoView view) {
+        this.jogo = jogo;
+        this.view = view;
     }
 
-    public iniciarpersonagem(Protagonista protagonista,JogoService service){
-        Protagonista prota=new Protagonista();
-        prota.setopcaoEscolhida(service.escolherOpcao());
-        prota.setidRoupa(service.escolherRoupa());
-        prota.setidElenco(service.escolherElenco());
-        return prota;
-    }
+    public Protagonista iniciarPersonagem() {
+        String nome = view.receberNome();
+        int genero = view.escolherOpcao();
+        int idRoupa = view.escolherRoupa();
 
+        return new Protagonista(nome, 0, genero, 0, idRoupa);
+    }
 
     public void iniciarNovoJogo() {
-        this.protagonista = iniciarpersonagem();
+        jogo.setNome("Reserva para Dois"); // Ajustado para definir o nome do jogo
+        jogo.setInventario(new Inventario());
+        jogo.getInventario().setItens(new ArrayList<>());
 
-        int idPrimeiroCapitulo = 1;
-        Capitulo primeiroCap = repository.buscarPorId(idPrimeiroCapitulo);
-        iniciarCapitulo(primeiroCap); 
-    }
+        Protagonista prota = iniciarPersonagem();
+        jogo.setProta(prota);
 
-public void iniciarCapitulo(int idCapitulo) {
+        List<Secundario> secundarios = new ArrayList<>();
+        secundarios.add(new Secundario("Ângela", 1, 30, 6));
+        secundarios.add(new Secundario("Mônica", 2, 30, 10));
+        secundarios.add(new Secundario("Márcia", 3, 30, 8));
+        secundarios.add(new Secundario("Gabriela", 4, 30, 4));
+        jogo.setSecundarios(secundarios);
 
-        Capitulo capitulo = repository.buscarPorId(idCapitulo);
-
-        if (capitulo != null) {
-            capitulo.setFinalizado(false);
-            exibirInicioCapitulo(capitulo);
+        RoteiroRepository roteiro;
+        if (prota.getGenero() == 1) {
+            roteiro = new RoteiroFemininoRepository(prota);
+        } else {
+            roteiro = new RoteiroMasculinoRepository(prota);
         }
-        else{
-            exibirMensagemErro("Iniciando capítulo: " + capitulo.getTitulo());
-    }
+
+        List<Capitulo> capitulos = new ArrayList<>();
+        for (int i = 1; i <= 10; i++) {
+            Capitulo cap = roteiro.buscarCapitulo(i);
+            if (cap != null) {
+                capitulos.add(cap);
+            }
         }
-
-
-    public String obterCreditos() {
-        return "\n--- Créditos ---\nDesenvolvido por:\n Camili Carneiro\n Yarlley Fernandes \n Ano: 2026\n";
+        jogo.setCapitulos(capitulos);
     }
 
-    public void processarImpacto(Secundario solteira, int pontosBase) {
-    int valorFinal = pontosBase;
-
-    if (pontosBase < 0) {
-        valorFinal = pontosBase - (solteira.getExigencia() / 2);
+    public void exibirInstrucoes() {
+        view.exibirTexto("\n--- Instruções ---\nFaça suas escolhas com sabedoria.\n");
     }
 
-    solteira.incrementarAfinidade(valorFinal);
-}
-
-public void processarJogada(Dialogo dialogo, int escolhaDoJogador) {
-    int pontosBase = dialogo.getPontuacaoDaEscolha(escolhaDoJogador);
-    
-    Secundario solteira = dialogo.getSolteiraAlvo();
-    
-    if (solteira != null) {
-        int pontosFinais = pontosBase;
-        if (pontosBase < 0) {
-            pontosFinais = pontosBase - (solteira.getExigencia() / 2);
-        }
-        
-        solteira.incrementarAfinidade(pontosFinais);
+    public void exibirCreditos() {
+        view.exibirTexto("\n--- Créditos ---\nDesenvolvido por:\n Camili Carneiro\n Yarlley Fernandes \n Ano: 2026\n");
     }
-}
-
-
 }

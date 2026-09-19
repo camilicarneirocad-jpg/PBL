@@ -15,7 +15,8 @@ public class Dialogo extends Fala {
             List<Opcoes> opcoes,
             int piorOpcao
     ) {
-        super(idFala, texto, nomePersonagem, solteiraAlvo, idProximaFala, eNarrativa);
+        super(idFala, texto, nomePersonagem, solteiraAlvo, eNarrativa);
+        this.setIdProximaFala(idProximaFala);
         this.opcoes = opcoes;
         this.piorOpcao = piorOpcao;
     }

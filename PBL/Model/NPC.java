@@ -1,19 +1,18 @@
-
 public class NPC extends Personagem {
-    private String funcao;
+    private String nome;
 
 
-    public NPC(String funcao) {
-        this.funcao = funcao;
+    public NPC(String nome) {
+        this.funcao = nome;
     }
     
 
-    public String getfuncao() {
-        return funcao;
+    public String getfnome() {
+        return nome;
     }
 
-    public void setfuncao(String funcao) {
-        this.funcao = funcao;
+    public void setnome(String nome) {
+        this.nome = nome;
     }
    
 

@@ -1,29 +1,62 @@
+import java.util.List;
+
 public class Capitulo {
     private int idCapitulo;
     private String titulo;
-    private int idPrimeiraFala;
-    private int idUltimaFala;
-    private boolean finalizado;
+    private int idPrimeiraFala; // Continua sendo preenchido normalmente pelos repositórios
+    private int numeroCenas;
     private List<Cena> cenas;
 
-    public Capitulo(int idCapitulo, String titulo, int idPrimeiraFala, int idUltimaFala, List<Cena> cenas) {
+    public Capitulo(int idCapitulo, String titulo, int idPrimeiraFala, int numeroCenas, List<Cena> cenas) {
         this.idCapitulo = idCapitulo;
         this.titulo = titulo;
         this.idPrimeiraFala = idPrimeiraFala;
-        this.idUltimaFala = idUltimaFala;
+        this.numeroCenas = numeroCenas;
         this.cenas = cenas;
-        this.finalizado = false;
     }
 
-    public int getIdCapitulo() { return idCapitulo; }
-    public int getcenas() { return cenas; }
-    public int setcenas(List<Cena> cenas) { 
-    this.cenas = cenas; 
-        }
-    public String getTitulo() { return titulo; }
-    public int getIdPrimeiraFala() { return idPrimeiraFala; }
-    public int getIdUltimaFala() { return idUltimaFala; }
-    public boolean isFinalizado() { return finalizado; }
-    public void setFinalizado(boolean finalizado) { this.finalizado = finalizado; }
+    // para deixar o nome correto
+    public int getIdPrimeiraCena() {
+        return this.idPrimeiraFala; 
+    }
 
+    public int getIdCapitulo() {
+        return idCapitulo;
+    }
+
+    public void setIdCapitulo(int idCapitulo) {
+        this.idCapitulo = idCapitulo;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public int getIdPrimeiraFala() {
+        return idPrimeiraFala;
+    }
+
+    public void setIdPrimeiraFala(int idPrimeiraFala) {
+        this.idPrimeiraFala = idPrimeiraFala;
+    }
+
+    public int getNumeroCenas() {
+        return numeroCenas;
+    }
+
+    public void setNumeroCenas(int numeroCenas) {
+        this.numeroCenas = numeroCenas;
+    }
+
+    public List<Cena> getCenas() {
+        return cenas;
+    }
+
+    public void setCenas(List<Cena> cenas) {
+        this.cenas = cenas;
+    }
 }

@@ -1,33 +1,32 @@
-import java.util.List;
-
 public class ControladorDialogos {
     private ServiceDialogo service;
     private JogoView view;
     private Jogo jogo;
     private Cena cena;
 
-    public ControladorDialogos(Cena cena, JogoView view, Jogo jogo) {
-        this.cena = cena;
+    public ControladorDialogos(JogoView view, Jogo jogo, Cena cena) {
         this.view = view;
         this.jogo = jogo;
-    }
-
-    Fala falaInicial=cena.idPrimeiraFala;
-
-    private int decidirProximaFalaDinamica(Fala falaAtual) {
-        if()
+        this.cena = cena;
     }
 
     public void iniciar(Fala falaInicial) {
-        this.service = new ServiceDialogo(cena, falaInicial, view);
+        if (falaInicial == null) return;
+        
+        this.service = new ServiceDialogo(cena, falaInicial, view, jogo);
         Fala falaAtual = falaInicial;
+        
         while (falaAtual != null) {
-            if (falaAtual.getENarrativa() == 1) {
+            if (falaAtual.isNarrativa()) {
                 falaAtual = service.passarFalas(falaAtual);
             } else {
-                falaAtual = service.passarDialogo(falaAtual, jogo);
+                view.exibirTexto(falaAtual.getTexto());
+                int escolhaDoUsuario = view.receberOpcaoNumerica();
+                
+                service.processarInfo(escolhaDoUsuario, falaAtual, jogo.getProta());
+                
+                falaAtual = service.passarFalas(falaAtual);
             }
-
         }
     }
-
+}

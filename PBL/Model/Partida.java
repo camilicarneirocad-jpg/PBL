@@ -1,29 +1,49 @@
-public class Partida{
-    private int idPartida;
-    private int idCapituloAtual;
-    private int idElenco;
-    private boolean finalizada;
-    private Protagonista prota;
-    private list<Secundario> secundarios;
-    
+import java.util.List;
 
-    public int getidPartida() {
+public class Partida {
+    private int idPartida;
+    private Protagonista prota;
+    private List<Secundario> secundarios;
+    private List<NPC> npc;
+    private Capitulo finalCapitulo;
+
+    public int getIdPartida() {
         return idPartida;
     }
 
-    public int getidElenco() {
-        return idElenco;
+    public void setIdPartida(int idPartida) {
+        this.idPartida = idPartida;
     }
 
-    public int idCapituloAtual() {
-        return idCapituloAtual;
+    public Protagonista getProta() {
+        return prota;
     }
 
-    public void proximoCapitulo(int idCapituloAtual, int idProximoCapitulo) {
-        this.idCapituloAtual=idProximoCapitulo;
+    public void setProta(Protagonista prota) {
+        this.prota = prota;
     }
 
-    public void finalizarpartida(boolean finalizada) {
-        this.finalizada= true;
+    public List<Secundario> getSecundarios() {
+        return secundarios;
+    }
+
+    public void setSecundarios(List<Secundario> secundarios) {
+        this.secundarios = secundarios;
+    }
+
+    public List<NPC> getNpc() {
+        return npc;
+    }
+
+    public void setNpc(List<NPC> npc) {
+        this.npc = npc;
+    }
+
+    public Capitulo getFinalCapitulo() {
+        return finalCapitulo;
+    }
+
+    public void setFinalCapitulo(Capitulo finalCapitulo) {
+        this.finalCapitulo = finalCapitulo;
     }
 }

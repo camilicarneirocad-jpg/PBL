@@ -1,45 +1,40 @@
-
 public class Protagonista extends Personagem {
-    private int opcaoEscolhida;
+    private int genero;
     private int antipatia;
     private int idRoupa;
-    private int idElenco;
 
-
-    public Protagonista(int opcaoEscolhida,int idRoupa,int idElenco) {
-        this.opcaoEscolhida = opcaoEscolhida;
+    public Protagonista(String nome, int id, int genero, int antipatia, int idRoupa) {
+        super(nome, id);
+        this.genero = genero;
+        this.antipatia = antipatia;
         this.idRoupa = idRoupa;
-        this.idElenco= idElenco;
-        this.antipatia=0;
     }
-    
 
-    public int getaintipatia() {
-        return nome;
+    public int getGenero() {
+        return genero;
     }
-    public int getopcaoEscolhida() {
-        return opcaoEscolhida;
+
+    public void setGenero(int genero) {
+        this.genero = genero;
     }
-    public int getidRoupa() {
+
+    public int getAntipatia() {
+        return antipatia;
+    }
+
+    public void setAntipatia(int antipatia) {
+        this.antipatia = antipatia;
+    }
+
+    public void incrementarAntipatia(int qtd) {
+        this.antipatia = this.antipatia + qtd;
+    }
+
+    public int getIdRoupa() {
         return idRoupa;
     }
-    public int getidElenco() {
-        return idElenco;
-    }
 
-    public void setidRoupa(int idRoupa) {
+    public void setIdRoupa(int idRoupa) {
         this.idRoupa = idRoupa;
     }
-    public void setidElenco(int idElenco){
-        this.idElenco = idElenco;
-    }
-    public void setopcaoEscolhida(int opcaoEscolhida){
-        this.opcaoEscolhida = opcaoEscolhida;
-    }
-    public void incrementarAntipatia(int qtd){
-        this.antipatia=this.antipatia+qtd;
-    }
-
-
-
 }
