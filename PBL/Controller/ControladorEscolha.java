@@ -60,4 +60,6 @@ public class ControladorEscolha {
             System.out.println("*(A sua resposta causou uma má impressão nas juradas...)*");
         }
     }
+
+
 }

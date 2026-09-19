@@ -5,6 +5,7 @@ import Model.Dialogo;
 import Model.Protagonista;
 import Model.Secundario;
 import Repository.RoteiroRepository;
+import View.JogoView;
 
 import java.util.Map;
 
@@ -67,18 +68,33 @@ public class JogoService {
         return "\n--- Créditos ---\nDesenvolvido por:\n Camili Carneiro\n Yarlley Fernandes\n Ano: 2026\n";
     }
 
-    public void processarImpacto(Secundario solteira, int pontosBase) {
-        if (solteira == null) return;
+    public void processarImpacto(Secundario solteira, int pontosBase, JogoView view) {
+        if (solteira == null || pontosBase == 0) return;
 
         int valorFinal = pontosBase;
+
+        // Aplica a regra de penalização por exigência caso o ponto seja negativo
         if (pontosBase < 0) {
             valorFinal = pontosBase - (solteira.getExigencia() / 2);
         }
 
+        // Atualiza a afinidade da personagem na memória
         solteira.setAfinidade(solteira.getAfinidade() + valorFinal);
+
+        // Formatação do feedback no terminal
+        String indicador = (valorFinal > 0) ? "▲ +" : "▼ ";
+        String mensagemFeedback = String.format(
+                "   └─ %s%d de Afinidade com %s! (Afinidade Atual: %d)",
+                indicador,
+                valorFinal,
+                solteira.getNome(),
+                solteira.getAfinidade()
+        );
+
+        view.exibirTexto(mensagemFeedback);
     }
 
-    public void processarJogada(Dialogo dialogo, int escolhaDoJogador) {
+    public void processarJogada(Dialogo dialogo, int escolhaDoJogador, JogoView view) {
         if (dialogo == null) return;
 
         Map<Secundario, Map<Integer, Integer>> pontos = dialogo.getPontosPorPersonagem();
@@ -89,7 +105,7 @@ public class JogoService {
 
                 if (tabelaPontos != null && tabelaPontos.containsKey(escolhaDoJogador)) {
                     int pontosBase = tabelaPontos.get(escolhaDoJogador);
-                    processarImpacto(solteira, pontosBase);
+                    processarImpacto(solteira, pontosBase, view);
                 }
             }
         }

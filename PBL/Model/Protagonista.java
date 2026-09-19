@@ -5,6 +5,7 @@ public class Protagonista extends Personagem {
     private int antipatia;
     private int idRoupa;
     private int idElenco;
+    private int pontosNegativos;
 
 
     public Protagonista(String nome, int id, int afinidade, int opcaoEscolhida, int idRoupa, int idElenco) {
@@ -30,6 +31,13 @@ public class Protagonista extends Personagem {
         this.antipatia += qtd;
     }
 
+    public void adicionarPontosNegativos(int pontos) {
+        this.pontosNegativos += pontos;
+        // Garante que o valor não fica abaixo de zero
+        if (this.pontosNegativos < 0) {
+            this.pontosNegativos = 0;
+        }
+    }
 
-
+    public int getPontosNegativos() {return pontosNegativos;}
 }
