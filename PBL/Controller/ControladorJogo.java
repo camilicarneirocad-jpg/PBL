@@ -10,7 +10,7 @@ public class ControladorJogo {
         this.view = view;
         this.jogoService = new JogoService(jogo, view);
         this.controladorCenas = new ControladorCenas(view, jogo);
-        this.controladorCapitulos = new ControladorCapitulos(view, jogo, controladorCenas);
+        this.controladorCapitulos = new ControladorCapitulos(view, controladorCenas);
     }
 
     public void iniciarFluxoPrincipal() {

@@ -5,6 +5,7 @@ public class Dialogo extends Fala {
     private List<Opcoes> opcoes;
     private int piorOpcao;
 
+ 
     public Dialogo(
             int idFala,
             String texto,
@@ -15,8 +16,21 @@ public class Dialogo extends Fala {
             List<Opcoes> opcoes,
             int piorOpcao
     ) {
+        super(idFala, texto, nomePersonagem, solteiraAlvo, eNarrativa, idProximaFala);
+        this.opcoes = opcoes;
+        this.piorOpcao = piorOpcao;
+    }
+
+    public Dialogo(
+            int idFala,
+            String texto,
+            String nomePersonagem,
+            Secundario solteiraAlvo,
+            boolean eNarrativa,
+            List<Opcoes> opcoes,
+            int piorOpcao
+    ) {
         super(idFala, texto, nomePersonagem, solteiraAlvo, eNarrativa);
-        this.setIdProximaFala(idProximaFala);
         this.opcoes = opcoes;
         this.piorOpcao = piorOpcao;
     }

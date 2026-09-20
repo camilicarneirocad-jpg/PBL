@@ -1,76 +1,90 @@
 import java.util.List;
+import java.util.Map;
 
 public class ServiceDialogo {
     private Cena cena;
     private List<Fala> falas;
-    private Fala falaAtual;
     private JogoView view;
     private Jogo jogo;
     
-    public ServiceDialogo(Cena cena, Fala falaAtual, JogoView view, Jogo jogo) {
+    public ServiceDialogo(Cena cena, JogoView view, Jogo jogo) {
         this.cena = cena;
-        this.falaAtual = falaAtual;
         this.falas = (cena != null) ? cena.getFalas() : null;
         this.view = view;
         this.jogo = jogo;
     }
 
-    public Fala passarFalas(Fala falaAtual) {
-        view.exibirTexto(falaAtual.getTexto());
-        view.receberEnter();
+    public Fala obterProximaFala(Fala falaAtual) {
+    Integer idProxima = falaAtual.getIdProximaFala();
 
-        Integer idProxima = falaAtual.getIdProximaFala();
-        if (idProxima == null || falas == null) return null;
-
-        for (Fala fala : falas) {
-            if (fala.getIdFala() == idProxima) {
-                return fala;
+    if (idProxima == null && falas != null) {
+        for (int i = 0; i < falas.size(); i++) {
+            if (falas.get(i).getIdFala() == falaAtual.getIdFala()) {
+                if (i + 1 < falas.size()) {
+                    return falas.get(i + 1);
+                }
             }
         }
         return null;
     }
 
-public void processarInfo(int escolha, Fala falaAtual, Protagonista prota) {
-    if (!(falaAtual instanceof Dialogo)) {
-        return;
-    }
+    if (idProxima == null || falas == null) return null;
 
-    Dialogo dialogo = (Dialogo) falaAtual;
-    if (dialogo.getOpcoes() == null) {
-        return;
-    }
-
-    for (Opcoes opcao : dialogo.getOpcoes()) {
-        if (opcao.isAumentaAntipatia()) {
-            prota.incrementarAntipatia(opcao.getQtdAtipatia());
+    for (Fala fala : falas) {
+        if (fala.getIdFala() == idProxima) {
+            return fala;
         }
     }
+    return null;
+}
 
-    Opcoes opcaoEscolhida = null;
-    for (Opcoes opcao : dialogo.getOpcoes()) {
-        if (opcao.getId() == escolha) {
-            opcaoEscolhida = opcao;
-            break;
+public Fala passarFalas(Fala falaAtual) {
+    view.exibirTexto(falaAtual.getTexto());
+    view.receberEnter();
+    return obterProximaFala(falaAtual);
+}
+
+    public void processarInfo(int escolha, Fala falaAtual, Protagonista prota) {
+        if (!(falaAtual instanceof Dialogo)) {
+            return;
         }
-    }
 
-    if (opcaoEscolhida != null && opcaoEscolhida.getImpactos() != null) {
-        for (Map.Entry<Secundario, Integer> entry : opcaoEscolhida.getImpactos().entrySet()) {
-            Secundario secundarioNaOpcao = entry.getKey();
-            int impacto = entry.getValue();
+        Dialogo dialogo = (Dialogo) falaAtual;
+        if (dialogo.getOpcoes() == null) {
+            return;
+        }
 
-            for (Secundario personagemJogo : jogo.getSecundarios()) {
-                if (personagemJogo.getId() == secundarioNaOpcao.getId()) {
-                    personagemJogo.setAfinidade(personagemJogo.getAfinidade() + impacto);
+        for (Opcoes opcao : dialogo.getOpcoes()) {
+            if (opcao.isAumentaAntipatia()) {
+                prota.incrementarAntipatia(opcao.getQtdAtipatia());
+            }
+        }
 
-                    String sinal = (impacto >= 0) ? "+" : "";
-                    view.exibirTexto(personagemJogo.getNome() + " " + sinal + impacto);
-                    break;
+        Opcoes opcaoEscolhida = null;
+        for (Opcoes opcao : dialogo.getOpcoes()) {
+            if (opcao.getId() == escolha) {
+                opcaoEscolhida = opcao;
+                break;
+            }
+        }
+
+        if (opcaoEscolhida != null && opcaoEscolhida.getImpactos() != null) {
+            for (Map.Entry<Personagem, Integer> entry : opcaoEscolhida.getImpactos().entrySet()) {
+                Personagem personagemNaOpcao = entry.getKey();
+                int impacto = entry.getValue();
+
+                for (Secundario personagemJogo : jogo.getSecundarios()) {
+                    if (personagemJogo.getId() == personagemNaOpcao.getId()) {
+                        personagemJogo.setAfinidade(personagemJogo.getAfinidade() + impacto);
+
+                        String sinal = (impacto >= 0) ? "+" : "";
+                        view.exibirTexto(personagemJogo.getNome() + " " + sinal + impacto);
+                        break;
+                    }
                 }
             }
         }
     }
-}
 
     public Fala buscarFalaPorIds(List<Capitulo> capitulos, int idCapitulo, int idCena, int idFala) {
         if (capitulos == null) return null;
@@ -133,5 +147,5 @@ public void processarInfo(int escolha, Fala falaAtual, Protagonista prota) {
             }
         }
     }
-
+    
 }

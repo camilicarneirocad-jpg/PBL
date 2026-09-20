@@ -4,22 +4,31 @@ public class ControladorCapitulos {
     private ServiceCapitulo serviceCapitulo;
     private ControladorCenas controladorCenas;
     private JogoView view;
-    private Jogo jogo;
 
-    public ControladorCapitulos(JogoView view, Jogo jogo, ControladorCenas controladorCenas) {
+    public ControladorCapitulos(JogoView view, ControladorCenas controladorCenas) {
         this.view = view;
-        this.jogo = jogo;
         this.serviceCapitulo = new ServiceCapitulo();
         this.controladorCenas = controladorCenas;
     }
 
     public void iniciarCapitulo(Capitulo capitulo, Protagonista prota, List<Secundario> secundarios) {
-        view.exibirTexto(" CAPÍTULO " + capitulo.getIdCapitulo() + ": " + capitulo.getTitulo());
+        view.exibirTexto("\n========================================");
+        view.exibirTexto("CAPÍTULO " + capitulo.getIdCapitulo() + ": " + capitulo.getTitulo());
+        view.exibirTexto("========================================");
   
         serviceCapitulo.definirPrimeiraCena(capitulo, prota, secundarios, controladorCenas.getServiceCena());
         
-        int idPrimeiraCena = capitulo.getIdPrimeiraCena();
+        int proximaCenaId = capitulo.getIdPrimeiraCena();
         
-        controladorCenas.executarCena(capitulo, idPrimeiraCena, prota, secundarios);
+
+        while (proximaCenaId > 0) {
+            Cena cenaExecutada = controladorCenas.executarCena(capitulo, proximaCenaId, prota, secundarios);
+            
+            if (cenaExecutada != null && cenaExecutada.getIdProximacena() != null) {
+                proximaCenaId = cenaExecutada.getIdProximacena();
+            } else {
+                break;
+            }
+        }
     }
 }

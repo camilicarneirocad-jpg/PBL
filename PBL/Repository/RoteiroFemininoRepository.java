@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +21,7 @@ public class RoteiroFemininoRepository extends RoteiroRepository {
     }
 
     // ================= CAPÍTULO 1 =================
-private void carregarCapitulo1() {
+    private void carregarCapitulo1() {
         List<Cena> cenasCap1 = new ArrayList<>();
 
         List<Fala> falasCena1 = new ArrayList<>();
@@ -152,10 +151,24 @@ private void carregarCapitulo1() {
 
         List<Fala> falasCena2 = new ArrayList<>();
         Secundario angelaC2 = new Secundario("Ângela", 1, 30, 6);
-        List<Opcoes> opcoesFotoC2 = List.of(new Opcoes(1, "Selfie no topo da parede...", "", Map.of(angelaC2, 3), 1, 0, false));
+        Secundario monicaC2 = new Secundario("Mônica", 2, 30, 10);
+        Secundario marciaC2 = new Secundario("Márcia", 3, 30, 8);
+        Secundario gabrielaC2 = new Secundario("Gabriela", 4, 30, 4);
+
+        List<Opcoes> opcoesFotoC2 = List.of(
+            new Opcoes(1, "Selfie no topo da parede, rosto suado, sorrindo e mostrando os músculos", "", Map.of(angelaC2, 3), 1, 0, false),
+            new Opcoes(2, "Foto conceitual apenas dos equipamentos de escalada com filtro preto e branco", "", Map.of(monicaC2, 3), 1, 0, false),
+            new Opcoes(3, "Foto macro de um inseto ou da textura da madeira da plataforma, sem pessoas", "", Map.of(marciaC2, 3), 1, 0, false),
+            new Opcoes(4, "Foto espontânea das nuvens de chuva se formando no horizonte com o sol", "", Map.of(gabrielaC2, 3), 1, 0, false)
+        );
         falasCena2.add(new Dialogo(1, "Escolha uma foto para postar:", "Sistema", null, false, opcoesFotoC2, 2));
 
-        List<Opcoes> opcoesLegendaC2 = List.of(new Opcoes(1, "\"A gravidade tentou...\"", "", Map.of(angelaC2, 3), 1, 0, false));
+        List<Opcoes> opcoesLegendaC2 = List.of(
+            new Opcoes(1, "A gravidade tentou, mas hoje eu venci! Que venha o próximo desafio.", "", Map.of(angelaC2, 3), 1, 0, false),
+            new Opcoes(2, "Aventuras ao ar livre são ótimas, mas confesso que já estou sentindo falta de um ar-condicionado e uma taça de champanhe.", "", Map.of(monicaC2, 3), 1, 0, false),
+            new Opcoes(3, "O silêncio lá de cima foi a melhor parte. É fascinante como a física da escalada depende de tanta distribuição de peso perfeita.", "", Map.of(marciaC2, 3), 1, 0, false),
+            new Opcoes(4, "Às vezes, a gente precisa subir o mais alto possível para enxergar o que realmente importa. Um encontro para ficar na memória.", "", Map.of(gabrielaC2, 3), 1, 0, false)
+        );
         falasCena2.add(new Dialogo(2, "Escolha uma legenda:", "Sistema", null, false, opcoesLegendaC2, 3));
         falasCena2.add(new Fala(3, "Publicado com sucesso!", "Sistema", null, true, -1));
 
@@ -223,11 +236,25 @@ private void carregarCapitulo1() {
         cenasCap3.add(cena1);
 
         List<Fala> falasCena2 = new ArrayList<>();
+        Secundario angelaC3 = new Secundario("Ângela", 1, 30, 6);
+        Secundario monicaC3 = new Secundario("Mônica", 2, 30, 10);
+        Secundario marciaC3 = new Secundario("Márcia", 3, 30, 8);
         Secundario gabrielaC3 = new Secundario("Gabriela", 4, 30, 4);
-        List<Opcoes> opcoesLivroC3 = List.of(new Opcoes(1, "Um clássico antigo...", "", Map.of(gabrielaC3, 3), 1, 0, false));
-        falasCena2.add(new Dialogo(1, "Escolha um livro:", "Sistema", null, false, opcoesLivroC3, 2));
 
-        List<Opcoes> opcoesLegendaC3 = List.of(new Opcoes(1, "\"Entre tantas páginas...\"", "", Map.of(gabrielaC3, 3), 1, 0, false));
+        List<Opcoes> opcoesLivroC3 = List.of(
+            new Opcoes(1, "Guia de Escalada e Sobrevivência", "", Map.of(angelaC3, 3), 1, 0, false),
+            new Opcoes(2, "Historia da Alta Costura", "", Map.of(monicaC3, 3), 1, 0, false),
+            new Opcoes(3, "Fisica Quantica para Iniciantes", "", Map.of(marciaC3, 3), 1, 0, false),
+            new Opcoes(4, "Antologia Poetica", "", Map.of(gabrielaC3, 3), 1, 0, false)
+        );
+        falasCena2.add(new Dialogo(1, "Escolha foto de um livro pra postar:", "Sistema", null, false, opcoesLivroC3, 2));
+
+        List<Opcoes> opcoesLegendaC3 = List.of(
+            new Opcoes(1, "Ler sobre grandes aventuras e otimo, mas vive-las na pratica sempre vai ser o meu estilo favorito.", "", Map.of(angelaC3, 3), 1, 0, false),
+            new Opcoes(2, "O vintage nunca sai de moda. O cafe perfeito, a iluminacao perfeita, o estilo perfeito. O bom gosto mora nos pequenos detalhes.", "", Map.of(monicaC3, 3), 1, 0, false),
+            new Opcoes(3, "A melhor parte desse lugar nem sao os livros, e o silencio absoluto. A prova de que a paz e o isolamento recarregam qualquer bateria.", "", Map.of(marciaC3, 3), 1, 0, false),
+            new Opcoes(4, "Entre tantas paginas e historias perdidas no tempo, a minha favorita estava sentada bem na minha frente. Um encontro inesquecivel.", "", Map.of(gabrielaC3, 3), 1, 0, false)
+        );
         falasCena2.add(new Dialogo(2, "Escolha uma legenda:", "Sistema", null, false, opcoesLegendaC3, 3));
         falasCena2.add(new Fala(3, "Postado com sucesso!", "Sistema", null, true, -1));
 
@@ -295,11 +322,25 @@ private void carregarCapitulo1() {
         cenasCap4.add(cena1);
 
         List<Fala> falasCena2 = new ArrayList<>();
+        Secundario angelaC4 = new Secundario("Ângela", 1, 30, 6);
+        Secundario monicaC4 = new Secundario("Mônica", 2, 30, 10);
         Secundario marciaC4 = new Secundario("Márcia", 3, 30, 8);
-        List<Opcoes> opcoesFotoC4 = List.of(new Opcoes(1, "Um microchip clássico...", "", Map.of(marciaC4, 3), 1, 0, false));
-        falasCena2.add(new Dialogo(1, "Escolha um ícone:", "Sistema", null, false, opcoesFotoC4, 2));
+        Secundario gabrielaC4 = new Secundario("Gabriela", 4, 30, 4);
 
-        List<Opcoes> opcoesLegendaC4 = List.of(new Opcoes(1, "\"A melhor invenção...\"", "", Map.of(marciaC4, 3), 1, 0, false));
+        List<Opcoes> opcoesFotoC4 = List.of(
+            new Opcoes(1, "Uma pilha ou bateria estilizada com o desenho de um raio no meio", "", Map.of(angelaC4, 3), 1, 0, false),
+            new Opcoes(2, "Um crachá com um cordão elegante escrito Acesso VIP", "", Map.of(monicaC4, 3), 1, 0, false),
+            new Opcoes(3, "Um microchip processador classico", "", Map.of(marciaC4, 3), 1, 0, false),
+            new Opcoes(4, "Uma lampada vintage com o filamento interno no formato de um coracao", "", Map.of(gabrielaC4, 3), 1, 0, false)
+        );
+        falasCena2.add(new Dialogo(1, "Escolha um icone:", "Sistema", null, false, opcoesFotoC4, 2));
+
+        List<Opcoes> opcoesLegendaC4 = List.of(
+            new Opcoes(1, "Pausa na correria so pra recarregar a bateria. Mal posso esperar para as novas aventuras do reality.", "", Map.of(angelaC4, 3), 1, 0, false),
+            new Opcoes(2, "Ter um museu inteiro fechado so pra nos e o tipo de exclusividade que eu valorizo. O cenario perfeito, sem filas e com muito estilo.", "", Map.of(monicaC4, 3), 1, 0, false),
+            new Opcoes(3, "A melhor invencao da humanidade ainda e o silencio. Uma noite incrivel, focada no que importa, longe de qualquer interferencia externa.", "", Map.of(marciaC4, 3), 1, 0, false),
+            new Opcoes(4, "No meio de tantas maquinas e circuitos frios, e incrivel como a verdadeira faisca ainda vem de uma boa conversa.", "", Map.of(gabrielaC4, 3), 1, 0, false)
+        );
         falasCena2.add(new Dialogo(2, "Escolha uma legenda:", "Sistema", null, false, opcoesLegendaC4, 3));
         falasCena2.add(new Fala(3, "Publicado com sucesso!", "Sistema", null, true, -1));
 
@@ -366,11 +407,25 @@ private void carregarCapitulo1() {
         cenasCap5.add(cena1);
 
         List<Fala> falasCena2 = new ArrayList<>();
+        Secundario angelaC5 = new Secundario("Ângela", 1, 30, 6);
         Secundario monicaC5 = new Secundario("Mônica", 2, 30, 10);
-        List<Opcoes> opcoesFotoC5 = List.of(new Opcoes(1, "Taça de Martini...", "", Map.of(monicaC5, 3), 1, 0, false));
+        Secundario marciaC5 = new Secundario("Márcia", 3, 30, 8);
+        Secundario gabrielaC5 = new Secundario("Gabriela", 4, 30, 4);
+
+        List<Opcoes> opcoesFotoC5 = List.of(
+            new Opcoes(1, "Um alvo de dardos", "", Map.of(angelaC5, 3), 1, 0, false),
+            new Opcoes(2, "Uma taca de Martini com uma azeitona ou cereja no fundo", "", Map.of(monicaC5, 3), 1, 0, false),
+            new Opcoes(3, "A fachada simplificada de uma casa", "", Map.of(marciaC5, 3), 1, 0, false),
+            new Opcoes(4, "Um guardanapo de pano luxuoso com uma pequena frase escrita a mao", "", Map.of(gabrielaC5, 3), 1, 0, false)
+        );
         falasCena2.add(new Dialogo(1, "Escolha um objeto:", "Sistema", null, false, opcoesFotoC5, 2));
 
-        List<Opcoes> opcoesLegendaC5 = List.of(new Opcoes(1, "\"Noites no topo...\"", "", Map.of(monicaC5, 3), 1, 0, false));
+        List<Opcoes> opcoesLegendaC5 = List.of(
+            new Opcoes(1, "O lugar e chic, mas a verdadeira diversao comecou quando a gente achou a area de jogos. Mira calibrada e pronto para o proximo round.", "", Map.of(angelaC5, 3), 1, 0, false),
+            new Opcoes(2, "Noites no topo da cidade exigem a melhor companhia. Brindando ao sucesso, a estetica impecavel e aos bons momentos.", "", Map.of(monicaC5, 3), 1, 0, false),
+            new Opcoes(3, "De volta a base, depois de um dia longo.", "", Map.of(marciaC5, 3), 1, 0, false),
+            new Opcoes(4, "Ate mesmo no lugar mais agitado do mundo, tudo o que importa e a poesia de um bom olhar e uma conversa que faz o tempo parar.", "", Map.of(gabrielaC5, 3), 1, 0, false)
+        );
         falasCena2.add(new Dialogo(2, "Escolha uma legenda:", "Sistema", null, false, opcoesLegendaC5, 3));
         falasCena2.add(new Fala(3, "Publicado com sucesso!", "Sistema", null, true, -1));
 

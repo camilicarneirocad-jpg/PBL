@@ -45,8 +45,6 @@ public class ServiceCena {
         if (secundarios == null || secundarios.isEmpty()) {
             return null;
         }
-
-        boolean empatou = houveEmpate(secundarios);
         
         Secundario pior = secundarios.get(0);
         for (int i = 1; i < secundarios.size(); i++) {
@@ -119,4 +117,8 @@ public class ServiceCena {
         }
         return null;
     }
+
+
+
+    
 }

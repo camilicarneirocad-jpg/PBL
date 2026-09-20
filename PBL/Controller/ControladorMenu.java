@@ -2,15 +2,13 @@ public class ControladorMenu {
     private Menu menu;
     private MenuView view;
     private JogoService service;
-    private JogoView jview;
     private ControladorJogo controladorJogo;
     private boolean rodando;
 
-    public ControladorMenu(Menu menu, MenuView view, JogoService service, JogoView jview, ControladorJogo controladorJogo) {
+    public ControladorMenu(Menu menu, MenuView view, JogoService service, ControladorJogo controladorJogo) {
         this.menu = menu;
         this.view = view;
         this.service = service;
-        this.jview = jview;
         this.controladorJogo = controladorJogo;
         this.rodando = true;
     }

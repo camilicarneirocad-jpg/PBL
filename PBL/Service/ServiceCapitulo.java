@@ -4,7 +4,7 @@ public class ServiceCapitulo {
 
     public void definirPrimeiraCena(Capitulo capitulo, Protagonista prota, List<Secundario> secundarios, ServiceCena serviceCena) {
         if (capitulo.getIdCapitulo() == 7) {
-            if (prota.getaintipatia() >= 50) {
+            if (prota.getAntipatia() >= 50) {
                 capitulo.setIdPrimeiraFala(2);
             } else {
                 capitulo.setIdPrimeiraFala(1);
@@ -25,7 +25,7 @@ public class ServiceCapitulo {
                 }
             }
 
-            int antipatia = prota.getaintipatia();
+            int antipatia = prota.getAntipatia();
 
             if ((empate && antipatia > 60) || (nenhumaChegou40 && antipatia > 60)) {
                 capitulo.setIdPrimeiraFala(6);
