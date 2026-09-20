@@ -23,7 +23,7 @@ public class ControladorCapitulos {
 
         while (proximaCenaId > 0) {
             Cena cenaExecutada = controladorCenas.executarCena(capitulo, proximaCenaId, prota, secundarios);
-            
+
             if (cenaExecutada != null && cenaExecutada.getIdProximacena() != null) {
                 proximaCenaId = cenaExecutada.getIdProximacena();
             } else {

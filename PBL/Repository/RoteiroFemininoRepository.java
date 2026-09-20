@@ -492,7 +492,13 @@ public class RoteiroFemininoRepository extends RoteiroRepository {
         List<Fala> falasCena2 = new ArrayList<>();
         falasCena2.add(new Fala(1, "Para fechar, teste de atenção no telão!", "Apresentador", null, true, 2));
 
-        List<Opcoes> opcoesQuiz = List.of(new Opcoes(1, "Tem pavor de água funda...", "", Map.of(angelaC6, 5), 1, 0, false));
+        List<Opcoes> opcoesQuiz = List.of(
+            new Opcoes(1, "Tem pavor de água funda e mar aberto, apesar de dar aulas de natação em piscinas rasas.", "", Map.of(angelaC6, 5), 1, 0, false),
+            new Opcoes(2, "É incapaz de segurar o choro ao assistir a comédias românticas clichês na TV.", "", Map.of(marciaC6, 5), 1, 0, false),
+            new Opcoes(3, "Começou a carreira gerindo um brechó online escondida dos pais no quarto de casa.", "", Map.of(monicaC6, 5), 1, 0, false),
+            new Opcoes(4, "Possui um medo obsessivo de que seu estilo acabe parecendo comercial demais.", "", Map.of(gabrielaC6, 5), 1, 0, false),
+            new Opcoes(5, "Tem uma tatuagem secreta de um código binário antigo na nuca que fez escondida aos dezessete anos.", "", Map.of(angelaC6, -5, monicaC6, -5, marciaC6, -5, gabrielaC6, -5), 1, 0, false)
+        );
         falasCena2.add(new Dialogo(2, "Selecione o fato verídico correspondente:", "Apresentador", null, false, opcoesQuiz, 3));
         falasCena2.add(new Fala(3, "Decisões tomadas! Reta final a seguir.", "Apresentador", null, true, -1));
 
@@ -640,25 +646,318 @@ public class RoteiroFemininoRepository extends RoteiroRepository {
 
     private void carregarCapitulo8() {
         List<Cena> cenasCap8 = new ArrayList<>();
-        
+
         List<Fala> falasCena1 = new ArrayList<>();
-        falasCena1.add(new Fala(1, "Olá, telespectadores! Sejam bem-vindos ao Plantão Reserva para dois...", "Apresentador", null, true, -1));
+        falasCena1.add(new Fala(1, "Olá, telespectadores! Sejam bem-vindos ao Plantão Reserva para dois, o seu canal de notícias do reality de romance mais famoso dos últimos tempos.", "Apresentador", null, true, 2));
+        falasCena1.add(new Fala(2, "No noticiário de hoje, temos novidades sobre nossos participantes, atualizações de suas carreiras e, claro, uma informação exclusiva que promete movimentar os bastidores do programa.", "Apresentador", null, true, 3));
+        falasCena1.add(new Fala(3, "Para começar, vamos revelar o paradeiro das nossas garotas.", "Apresentador", null, true, 4));
+        falasCena1.add(new Fala(4, "Ângela acaba de assumir o cargo de técnica da equipe juvenil de natação. Apesar de ainda não conhecermos os novos competidores, uma coisa é certa: ela pretende treiná-los para chegar ao topo.", "Apresentador", null, true, 5));
+        falasCena1.add(new Fala(5, "A participante Gabriela estará presente na Feira Literária Municipal. Ela estará em uma roda literária lendo clássicos do Jorge Amado. Entre as obras selecionadas estará o livro “Gabriela” que inspirou seu nome.", "Apresentador", null, true, 6));
+        falasCena1.add(new Fala(6, "Mônica estará na Semana de Moda lançando uma prévia da sua coleção chamada “brasilidades” que promete revolucionar a moda mundial.", "Apresentador", null, true, 7));
+        falasCena1.add(new Fala(7, "E Marcia estará na abertura do evento +Física, onde apresentará seu artigo sobre o futuro da física quântica.", "Apresentador", null, true, -1));
+
         Cena cena1 = new Cena(1, "plantao_noticias", "trilha_noticiario.mp3", falasCena1, 2);
+        cena1.setIdPrimeiraFala(1);
+        cena1.setIdUltimaaFala(7);
         cenasCap8.add(cena1);
 
-        Capitulo capitulo8 = new Capitulo(8, "Plantão Reserva para Dois", 1, 1, cenasCap8);
+        List<Fala> falasCena2Angela = new ArrayList<>();
+        falasCena2Angela.add(new Fala(1, "Além dessas notícias, recebemos um furo impactante. A participante Ângela surgiu no programa matinal aroma do café trazendo alegações polêmicas envolvendo o nosso protagonista! Sobre o " + prota.getNome() + " ela disse:\n\n\"Ele dizia que gostava de competição, mas quando percebeu que não conseguia acompanhar meu ritmo, começou a agir como se competir comigo fosse uma coisa ruim.\"", "Apresentador", null, true, 2));
+        falasCena2Angela.add(new Fala(2, "Com essa notícia terminamos o nosso plantão. Não deixe de nos seguir nas redes sociais para mais. Até breve!", "Apresentador", null, true, 3));
+        falasCena2Angela.add(new Fala(3, "O jogador pega o celular para responder aos comentários dos telespectadores e tentar contornar a situação nas redes sociais.", "Sistema", null, true, -1));
+
+        Cena cena2Angela = new Cena(2, "plantao_fofoca", "trilha_tenso.mp3", falasCena2Angela, 6);
+        cena2Angela.setIdPrimeiraFala(1);
+        cena2Angela.setIdUltimaaFala(3);
+        cenasCap8.add(cena2Angela);
+
+        List<Fala> falasCena2Monica = new ArrayList<>();
+        falasCena2Monica.add(new Fala(1, "Além dessas notícias, recebemos um furo impactante. A participante Mônica surgiu no programa matinal aroma do café trazendo alegações polêmicas envolvendo o nosso protagonista! Sobre o " + prota.getNome() + " ela disse:\n\n\"Ele parecia interessado em mim durante o programa, mas depois percebi que tudo parecia muito calculado. Ele só demonstrava interesse quando sabia que aquilo poderia aumentar a pontuação dele.\"", "Apresentador", null, true, 2));
+        falasCena2Monica.add(new Fala(2, "Com essa notícia terminamos o nosso plantão. Não deixe de nos seguir nas redes sociais para mais. Até breve!", "Apresentador", null, true, 3));
+        falasCena2Monica.add(new Fala(3, "O jogador pega o celular para responder aos comentários dos telespectadores e tentar contornar a situação nas redes sociais.", "Sistema", null, true, -1));
+
+        Cena cena2Monica = new Cena(3, "plantao_fofoca", "trilha_tenso.mp3", falasCena2Monica, 6);
+        cena2Monica.setIdPrimeiraFala(1);
+        cena2Monica.setIdUltimaaFala(3);
+        cenasCap8.add(cena2Monica);
+
+        List<Fala> falasCena2Gabriela = new ArrayList<>();
+        falasCena2Gabriela.add(new Fala(1, "Além dessas notícias, recebemos um furo impactante. A participante Gabriela surgiu no programa matinal aroma do café trazendo alegações polêmicas envolvendo o nosso protagonista! Sobre o " + prota.getNome() + " ela disse:\n\n\"Ele sabia exatamente o que deveria falar para parecer uma pessoa gentil e sensível. Depois de um tempo, comecei a me perguntar se ele realmente pensava aquilo ou se só estava dizendo o que eu queria ouvir.\"", "Apresentador", null, true, 2));
+        falasCena2Gabriela.add(new Fala(2, "Com essa notícia terminamos o nosso plantão. Não deixe de nos seguir nas redes sociais para mais. Até breve!", "Apresentador", null, true, 3));
+        falasCena2Gabriela.add(new Fala(3, "O jogador pega o celular para responder aos comentários dos telespectadores e tentar contornar a situação nas redes sociais.", "Sistema", null, true, -1));
+
+        Cena cena2Gabriela = new Cena(4, "plantao_fofoca", "trilha_tenso.mp3", falasCena2Gabriela, 6);
+        cena2Gabriela.setIdPrimeiraFala(1);
+        cena2Gabriela.setIdUltimaaFala(3);
+        cenasCap8.add(cena2Gabriela);
+
+        List<Fala> falasCena2Marcia = new ArrayList<>();
+        falasCena2Marcia.add(new Fala(1, "Além dessas notícias, recebemos um furo impactante. A participante Márcia surgiu no programa matinal aroma do café trazendo alegações polêmicas envolvendo o nosso protagonista! Sobre o " + prota.getNome() + " ela disse:\n\n\"Ele dizia respeitar meu espaço, mas eu sentia que estava sempre esperando alguma coisa de mim. Às vezes, parecia que meu silêncio incomodava.\"", "Apresentador", null, true, 2));
+        falasCena2Marcia.add(new Fala(2, "Com essa notícia terminamos o nosso plantão. Não deixe de nos seguir nas redes sociais para mais. Até breve!", "Apresentador", null, true, 3));
+        falasCena2Marcia.add(new Fala(3, "O jogador pega o celular para responder aos comentários dos telespectadores e tentar contornar a situação nas redes sociais.", "Sistema", null, true, -1));
+
+        Cena cena2Marcia = new Cena(5, "plantao_fofoca", "trilha_tenso.mp3", falasCena2Marcia, 6);
+        cena2Marcia.setIdPrimeiraFala(1);
+        cena2Marcia.setIdUltimaaFala(3);
+        cenasCap8.add(cena2Marcia);
+
+        List<Fala> falasCena3 = new ArrayList<>();
+        falasCena3.add(new Fala(1, "Depois do plantão não paro de receber notificações… se eu não souber administrar estou perdido.", prota.getNome(), null, true, 2));
+        falasCena3.add(new Fala(2, "No celular:\n\n- Exibir notificações...", "Sistema", null, true, 3));
+        falasCena3.add(new Fala(3, "Parece que todo mundo tem alguma coisa para dizer. Melhor pensar bem antes de responder…", prota.getNome(), null, true, 4));
+
+        List<Opcoes> opcoesP1 = List.of(
+            new Opcoes(1, "\"Ela está claramente tentando me prejudicar porque não aceitou ser eliminada. Não vou levar a sério alguém assim.\"", "Defensivo", Map.of(), 1, -4, false),
+            new Opcoes(2, "\"Entendo que ela tenha se sentido assim. Posso explicar o meu lado, mas não quero transformar isso em uma briga.\"", "Diplomático", Map.of(), 1, 2, false),
+            new Opcoes(3, "\"Não acho que eu prive ficar me justificando. Quem assistiu ao programa pode tirar suas próprias conclusões.\"", "Neutro", Map.of(), 1, 0, false),
+            new Opcoes(4, "\"Se ela não gostou de mim, o problema é dela. Não vou perder meu tempo tentando agradar ninguém.\"", "Arrogante", Map.of(), 1, -2, false)
+        );
+        falasCena3.add(new Dialogo(4, "COMENTÁRIO DO PÚBLICO:\n\n\"Depois de ouvir o que ela falou, você não acha que deveria se explicar melhor? Afinal, a imagem que ela passou de você não foi muito boa.\"", "Público", null, false, opcoesP1, 5));
+
+        List<Opcoes> opcoesP2 = List.of(
+            new Opcoes(1, "\"Eu prefiro não responder. Algumas coisas que aconteceram entre nós devem permanecer entre nós.\"", "Reservado", Map.of(), 1, 0, false),
+            new Opcoes(2, "\"Se eu estivesse fingindo, provavelmente teria escolhido alguém muito mais fácil de conquistar.\"", "Irônico", Map.of(), 1, -2, false),
+            new Opcoes(3, "\"Ela está falando isso porque não conseguiu ganhar. É muito conveniente me chamar de falso depois que saiu.\"", "Agressivo", Map.of(), 1, -4, false),
+            new Opcoes(4, "\"Eu estava aqui para conhecer alguém, então é claro que pensei no jogo. Mas isso não significa que meus sentimentos fossem falsos.\"", "Sincero", Map.of(), 1, 2, false)
+        );
+        falasCena3.add(new Dialogo(5, "COMENTÁRIO DO PÚBLICO:\n\n\"Ela disse que você só estava fingindo interesse para continuar no programa. Você realmente gostava dela ou estava apenas jogando?\"", "Público", null, false, opcoesP2, 6));
+
+        Secundario monicaC8 = new Secundario("Mônica", 2, 30, 10);
+        List<Opcoes> opcoesP3 = List.of(
+            new Opcoes(1, "“Eu não sei se me adaptaria completamente, mas acho que poderia aprender a acompanhar o ritmo dela.”", "Esforçado", Map.of(monicaC8, 2), 1, 0, false),
+            new Opcoes(2, "“Eu adoraria conhecer esse lado da vida dela e descobrir novos lugares e experiências ao lado dela.”", "Entusiasmado", Map.of(monicaC8, 4), 1, 0, false),
+            new Opcoes(3, "“Acho que cada um pode continuar vivendo do seu jeito, mesmo estando em um relacionamento.”", "Independente", Map.of(monicaC8, 0), 1, 0, false),
+            new Opcoes(4, "“Ela parece viver ocupada demais. Talvez precisasse desacelerar antes de pensar em um relacionamento.”", "Crítico", Map.of(monicaC8, -2), 1, 0, false)
+        );
+        falasCena3.add(new Dialogo(6, "“Mônica já viajou pelo mundo e tem uma rotina bastante agitada. Você acha que conseguiria se adaptar ao estilo de vida dela?”", "Público", null, false, opcoesP3, 7));
+
+        Secundario angelaC8 = new Secundario("Ângela", 1, 30, 6);
+        List<Opcoes> opcoesP4 = List.of(
+            new Opcoes(1, "“Talvez eu não acompanhe sempre, mas gosto de pessoas que me desafiam a sair da zona de conforto.”", "Desafiador", Map.of(angelaC8, 4), 1, 0, false),
+            new Opcoes(2, "“Eu tentaria acompanhar. Acho que seria divertido viver essas experiências com ela.”", "Diverte-se", Map.of(angelaC8, 2), 1, 0, false),
+            new Opcoes(3, "“Não sei se conseguiria acompanhar, mas também não vejo isso como um problema.”", "Neutro", Map.of(angelaC8, 0), 1, 0, false),
+            new Opcoes(4, "“Sinceramente, acho que ela deveria aprender a diminuir um pouco esse espírito competitivo.”", "Desanimado", Map.of(angelaC8, -2), 1, 0, false)
+        );
+        falasCena3.add(new Dialogo(7, "“Ângela é conhecida pelo espírito competitivo. Você acha que conseguiria acompanhar o ritmo dela?”", "Público", null, false, opcoesP4, 8));
+
+        Secundario marciaC8 = new Secundario("Márcia", 3, 30, 8);
+        List<Opcoes> opcoesP5 = List.of(
+            new Opcoes(1, "“Eu tentaria ajudá-la a se soltar, mesmo que precisasse insistir um pouco.”", "Insistente", Map.of(marciaC8, -2), 1, 0, false),
+            new Opcoes(2, "“Eu respeitaria o jeito dela e deixaria que ela se sentisse confortável para se abrir no próprio ritmo.”", "Respeitoso", Map.of(marciaC8, 4), 1, 0, false),
+            new Opcoes(3, "“Acho que eu precisaria de um tempo para entender melhor como ela gosta de interagir.”", "Cauteloso", Map.of(marciaC8, 2), 1, 0, false),
+            new Opcoes(4, "“I don't mind.”", "Indiferente", Map.of(marciaC8, 0), 1, 0, false)
+        );
+        falasCena3.add(new Dialogo(8, "“Márcia é uma pessoa mais reservada e não parece se sentir muito confortável em situações sociais. Como você lidaria com isso?”", "Público", null, false, opcoesP5, 9));
+
+        Secundario gabrielaC8 = new Secundario("Gabriela", 4, 30, 4);
+        List<Opcoes> opcoesP6 = List.of(
+            new Opcoes(1, "“Acho que sim. Gosto de pessoas que conseguem transformar coisas simples em momentos especiais.”", "Romântico", Map.of(gabrielaC8, 4), 1, 0, false),
+            new Opcoes(2, "“Eu tentaria conhecer melhor esse lado dela. Acho que temos muito a descobrir um sobre o outro.”", "Curioso", Map.of(gabrielaC8, 2), 1, 0, false),
+            new Opcoes(3, "“Não sei se temos exatamente o mesmo jeito, mas acredito que diferenças também podem funcionar.”", "Pragmático", Map.of(gabrielaC8, 0), 1, 0, false),
+            new Opcoes(4, "“Acho que ela leva algumas coisas simples a sério demais. Eu provavelmente não teria muita paciência para isso.”", "Impaciente", Map.of(gabrielaC8, -2), 1, 0, false)
+        );
+        falasCena3.add(new Dialogo(9, "“Gabriela é conhecida por ser uma pessoa descontraída, apaixonada por literatura e por animais. Você acha que conseguiria acompanhar esse jeito tão leve e, ao mesmo tempo, profundo de enxergar a vida?”", "Público", null, false, opcoesP6, 10));
+
+        falasCena3.add(new Fala(10, "Espero que essas respostas não piorem as coisas… é melhor eu ir dormir e me preparar para a final do programa.", prota.getNome(), null, true, -1));
+
+        Cena cena3 = new Cena(6, "quarto_protagonista", "trilha_calma.mp3", falasCena3);
+        cena3.setIdPrimeiraFala(1);
+        cena3.setIdUltimaaFala(10);
+        cenasCap8.add(cena3);
+
+        Capitulo capitulo8 = new Capitulo(8, "Plantão Reserva para Dois", 1, 6, cenasCap8);
         bancoDeCapitulos.put(8, capitulo8);
     }
 
     private void carregarCapitulo9() {
         List<Cena> cenasCap9 = new ArrayList<>();
+
+        List<Fala> falasCena1 = new ArrayList<>();
+        falasCena1.add(new Fala(1, "Olá, fãs de Reserva para Dois! Finalmente chegamos ao momento mais esperado: a grande final!\n\nHoje, nossas competidoras irão dar suas considerações finais sobre o nosso protagonista.", "Apresentador", null, true, 2));
+        falasCena1.add(new Fala(2, "Mas atenção: neste momento, cada participante terá a liberdade de decidir se deseja continuar nessa história ou apertar o botão de desistência.\n\nEnfim, vamos começar as considerações das nossas meninas!", "Apresentador", null, true, 3));
+
+        falasCena1.add(new Fala(3, "“Participar do Reserva para Dois foi uma experiência diferente de tudo que eu já vivi. Tive momentos divertidos, conheci pessoas incríveis e saio daqui levando várias experiências comigo. Mas acho que algumas coisas poderiam ter sido melhores durante a minha trajetória.”", "Ângela", null, true, 4));
+        falasCena1.add(new Fala(4, "“Participar do Reserva para Dois foi uma experiência muito diferente do que eu imaginava. No começo, eu encarava tudo quase como uma competição, mas, com o tempo, percebi que estava vivendo algo que ia muito além disso. Acho que essa foi uma das experiências mais marcantes que já tive.”", "Ângela", null, true, 5));
+
+        falasCena1.add(new Fala(5, "“Confesso que entrar em um reality como esse foi uma experiência curiosa. Conheci pessoas diferentes, vivi situações que provavelmente não teria vivido fora daqui e até tive algumas surpresas pelo caminho. No fim, acho que minha trajetória poderia ter sido um pouco mais interessante.”", "Mônica", null, true, 6));
+        falasCena1.add(new Fala(6, "“Eu não sabia exatamente o que esperar quando entrei no programa. Entre encontros, desafios e algumas situações inesperadas, acabei encontrando muito mais inspiração do que imaginava. Acho que vou levar boas lembranças dessa experiência, tanto pessoal quanto profissionalmente.”", "Mônica", null, true, 7));
+
+        falasCena1.add(new Fala(7, "“Quando entrei aqui, achei que seria difícil lidar com tantas pessoas e com toda essa exposição. Acho que minhas expectativas não estavam completamente erradas. Foi uma experiência complicada em alguns momentos e não sei se faria tudo novamente.”", "Márcia", null, true, 8));
+        falasCena1.add(new Fala(8, "“Quando entrei no programa, eu tinha certeza de que seria uma perda de tempo. Mas, analisando tudo agora, percebo que estava errada. Acabei enfrentando situações que normalmente evitaria e descobri que talvez consiga me adaptar melhor do que imaginava.”", "Márcia", null, true, 9));
+
+        falasCena1.add(new Fala(9, "“Acho que essa experiência teve capítulos bons e outros que eu preferiria reescrever. Conheci pessoas interessantes e vivi situações que provavelmente vão render algumas histórias no futuro. Mas nem toda história precisa ter o final que imaginamos.”", "Gabriela", null, true, 10));
+        falasCena1.add(new Fala(10, "“Se eu tivesse que transformar essa experiência em um livro, provavelmente seria daqueles que a gente não consegue largar até chegar ao último capítulo. Foram muitos acontecimentos, algumas surpresas e, principalmente, histórias que vou guardar comigo depois que tudo isso terminar.”", "Gabriela", null, true, 11));
+
+        falasCena1.add(new Fala(11, "Essas foram as considerações finais das nossas meninas.\n\nAgora, chegou a hora de vocês tomarem a decisão final!\n\nDepois dos comerciais, vamos descobrir quem continuará ao lado de " + prota.getNome() + " e quem decidiu deixar essa história para trás. Não saiam daí! Até logo!", "Apresentador", null, true, -1));
+
+        Cena cena1 = new Cena(1, "palco_final", "trilha_final.mp3", falasCena1);
+        cena1.setIdPrimeiraFala(1);
+        cena1.setIdUltimaaFala(11);
+        cenasCap9.add(cena1);
+
         Capitulo capitulo9 = new Capitulo(9, "A Grande Final", 1, 1, cenasCap9);
         bancoDeCapitulos.put(9, capitulo9);
     }
 
     private void carregarCapitulo10() {
         List<Cena> cenasCap10 = new ArrayList<>();
-        Capitulo capitulo10 = new Capitulo(10, "A Grande Decisão", 1, 1, cenasCap10);
+
+        List<Fala> falasCenaA = new ArrayList<>();
+        falasCenaA.add(new Fala(1, "Olá, telespectadores! O programa reserva para dois finalmente chegou a sua grande final! Isso mesmo, hoje as nossas competidoras irão escolher se querem ou não embarcar nesse romance.", "Apresentador", null, true, 2));
+        falasCenaA.add(new Fala(2, "Para isso, elas irão optar entre apertar o botão da desistência ou se envolver com o nosso protagonista " + prota.getNome(), "Apresentador", null, true, 3));
+        falasCenaA.add(new Fala(3, "Me diga aí, como estão suas expectativas para esse grande momento?", "Apresentador", null, true, 4));
+
+        List<Opcoes> opcoesExpectativaA = List.of(
+            new Opcoes(1, "“Eu estou empolgado. Acredito que causei uma boa impressão”", "Empolgado", Map.of(), 1, 0, false),
+            new Opcoes(2, "“Eu estou apreensivo, sinto que eu poderia ter tido uma melhor participação”.", "Apreensivo", Map.of(), 1, 0, false)
+        );
+        falasCenaA.add(new Dialogo(4, "Escolha sua expectativa:", "Sistema", null, false, opcoesExpectativaA, 5));
+
+        falasCenaA.add(new Fala(5, "Ok, vamos ver agora o que as garotas acham disso.\n\nApós a contagem regressiva, apertem ou não o botão. 1, 2, 3 e…..já\n\n*Angela aperta o botão*", "Apresentador", null, true, 6));
+        falasCenaA.add(new Fala(6, "Vejam só! Parece que o " + prota.getNome() + " deu match com a participante Ângela…\n\nFale, querida, o que motivou a sua escolha?", "Apresentador", null, true, 7));
+        falasCenaA.add(new Fala(7, "“Você conseguiu acompanhar meu ritmo de um jeito que eu não esperava. Tive momentos que vou levar comigo, e percebi que gosto de ter você por perto. Ainda quero viver muita coisa ao seu lado e descobrir até onde essa história pode chegar.”", "Ângela", null, true, 8));
+        falasCenaA.add(new Fala(8, "Maravilha! E você, " + prota.getNome() + " o que acha?", "Apresentador", null, true, 9));
+
+        List<Opcoes> opcoesRespostaA = List.of(
+            new Opcoes(1, "“Era exatamente o que eu esperava. A nossa conexão ao longo do programa estava evidente e sinto que os encontros serão promissores”", "Confiante", Map.of(), 1, 0, false),
+            new Opcoes(2, "“Não era o que eu esperava, mas acredito que poderemos formar uma ótima dupla”", "Pragmático", Map.of(), 1, 0, false)
+        );
+        falasCenaA.add(new Dialogo(9, "Escolha sua resposta:", "Sistema", null, false, opcoesRespostaA, 10));
+
+        falasCenaA.add(new Fala(10, "Que ótimo! Muito obrigada pela participação! Vocês acabaram de ganhar uma reserva de luxo para o restaurante O Sabor do Amor na Itália! Isso mesmo! Espero que aproveitem a viagem para construir uma boa relação e passear bastante!\n\nEnfim, agradeço ao público pela atenção… não deixem de nos acompanhar nas próximas edições! Até mais!", "Apresentador", null, true, -1));
+
+        Cena cenaA = new Cena(1, "final_angela", "trilha_vitoria.mp3", falasCenaA);
+        cenaA.setIdPrimeiraFala(1);
+        cenaA.setIdUltimaaFala(10);
+        cenasCap10.add(cenaA);
+
+        List<Fala> falasCenaB = new ArrayList<>();
+        falasCenaB.add(new Fala(1, "Olá, telespectadores! O programa reserva para dois finalmente chegou a sua grande final! Isso mesmo, hoje as nossas competidoras irão escolher se querem ou não embarcar nesse romance.", "Apresentador", null, true, 2));
+        falasCenaB.add(new Fala(2, "Para isso, elas irão optar entre apertar o botão da desistência ou se envolver com o nosso protagonista " + prota.getNome(), "Apresentador", null, true, 3));
+        falasCenaB.add(new Fala(3, "Me diga aí, como estão suas expectativas para esse grande momento?", "Apresentador", null, true, 4));
+
+        List<Opcoes> opcoesExpectativaB = List.of(
+            new Opcoes(1, "“Eu estou empolgado. Acredito que causei uma boa impressão”", "Empolgado", Map.of(), 1, 0, false),
+            new Opcoes(2, "“Eu estou apreensivo, sinto que eu poderia ter tido uma melhor participação”.", "Apreensivo", Map.of(), 1, 0, false)
+        );
+        falasCenaB.add(new Dialogo(4, "Escolha sua expectativa:", "Sistema", null, false, opcoesExpectativaB, 5));
+
+        falasCenaB.add(new Fala(5, "Ok, vamos ver agora o que as garotas acham disso.\n\nApós a contagem regressiva, apertem ou não o botão. 1, 2, 3 e…..já\n\n*Marcia aperta o botão*", "Apresentador", null, true, 6));
+        falasCenaB.add(new Fala(6, "Vejam só! Parece que o " + prota.getNome() + " deu match com a participante Marcia…\n\nFale, querida, o que motivou a sua escolha?", "Apresentador", null, true, 7));
+        falasCenaB.add(new Fala(7, "“Eu não sou muito boa em falar sobre o que sinto. Mas, com você, percebi que consigo me sentir confortável sendo eu mesma. Gosto da sua companhia e quero continuar descobrindo o que existe entre nós.\n\nVocê conseguiu acompanhar meu ritmo de um jeito que eu não esperava. Tive momentos que vou levar comigo, e percebi que gosto de ter você por perto. Ainda quero viver muita coisa ao seu lado e descobrir até onde essa história pode chegar.”", "Márcia", null, true, 8));
+        falasCenaB.add(new Fala(8, "Maravilha! E você, " + prota.getNome() + " o que acha?", "Apresentador", null, true, 9));
+
+        List<Opcoes> opcoesRespostaB = List.of(
+            new Opcoes(1, "“Era exatamente o que eu esperava. A nossa conexão ao longo do programa estava evidente e sinto que os encontros serão promissores”", "Confiante", Map.of(), 1, 0, false),
+            new Opcoes(2, "“Não era o que eu esperava, mas acredito que poderemos formar uma ótima dupla”", "Pragmático", Map.of(), 1, 0, false)
+        );
+        falasCenaB.add(new Dialogo(9, "Escolha sua resposta:", "Sistema", null, false, opcoesRespostaB, 10));
+
+        falasCenaB.add(new Fala(10, "Que ótimo! Muito obrigada pela participação! Vocês acabaram de ganhar uma reserva de luxo para o restaurante O Sabor do Amor na Itália! Isso mesmo! Espero que aproveitem a viagem para construir uma boa relação e passear bastante!\n\nEnfim, agradeço ao público pela atenção… não deixem de nos acompanhar nas próximas edições! Até mais!", "Apresentador", null, true, -1));
+
+        Cena cenaB = new Cena(2, "final_marcia", "trilha_vitoria.mp3", falasCenaB);
+        cenaB.setIdPrimeiraFala(1);
+        cenaB.setIdUltimaaFala(10);
+        cenasCap10.add(cenaB);
+
+        List<Fala> falasCenaC = new ArrayList<>();
+        falasCenaC.add(new Fala(1, "Olá, telespectadores! O programa reserva para dois finalmente chegou a sua grande final! Isso mesmo, hoje as nossas competidoras irão escolher se querem ou não embarcar nesse romance.", "Apresentador", null, true, 2));
+        falasCenaC.add(new Fala(2, "Para isso, elas irão optar entre apertar o botão da desistência ou se envolver com o nosso protagonista " + prota.getNome(), "Apresentador", null, true, 3));
+        falasCenaC.add(new Fala(3, "Me diga aí, como estão suas expectativas para esse grande momento?", "Apresentador", null, true, 4));
+
+        List<Opcoes> opcoesExpectativaC = List.of(
+            new Opcoes(1, "“Eu estou empolgado. Acredito que causei uma boa impressão”", "Empolgado", Map.of(), 1, 0, false),
+            new Opcoes(2, "“Eu estou apreensivo, sinto que eu poderia ter tido uma melhor participação”.", "Apreensivo", Map.of(), 1, 0, false)
+        );
+        falasCenaC.add(new Dialogo(4, "Escolha sua expectativa:", "Sistema", null, false, opcoesExpectativaC, 5));
+
+        falasCenaC.add(new Fala(5, "Ok, vamos ver agora o que as garotas acham disso.\n\nApós a contagem regressiva, apertem ou não o botão. 1, 2, 3 e…..já\n\n*Gabriela aperta o botão*", "Apresentador", null, true, 6));
+        falasCenaC.add(new Fala(6, "Vejam só! Parece que o " + prota.getNome() + " deu match com a participante Gabriela…\n\nFale, querida, o que motivou a sua escolha?", "Apresentador", null, true, 7));
+        falasCenaC.add(new Fala(7, "“Eu acho que algumas pessoas aparecem na nossa vida e acabam deixando uma história que a gente não quer terminar. Você se tornou alguém importante para mim, e eu gosto do que construímos juntos. Quero descobrir quais serão os próximos capítulos dessa história.”", "Gabriela", null, true, 8));
+        falasCenaC.add(new Fala(8, "Maravilha! E você, " + prota.getNome() + " o que acha?", "Apresentador", null, true, 9));
+
+        List<Opcoes> opcoesRespostaC = List.of(
+            new Opcoes(1, "“Era exatamente o que eu esperava. A nossa conexão ao longo do programa estava evidente e sinto que os encontros serão promissores”", "Confiante", Map.of(), 1, 0, false),
+            new Opcoes(2, "“Não era o que eu esperava, mas acredito que poderemos formar uma ótima dupla”", "Pragmático", Map.of(), 1, 0, false)
+        );
+        falasCenaC.add(new Dialogo(9, "Escolha sua resposta:", "Sistema", null, false, opcoesRespostaC, 10));
+
+        falasCenaC.add(new Fala(10, "Que ótimo! Muito obrigada pela participação! Vocês acabaram de ganhar uma reserva de luxo para o restaurante O Sabor do Amor na Itália! Isso mesmo! Espero que aproveitem a viagem para construir uma boa relação e passear bastante!\n\nEnfim, agradeço ao público pela atenção… não deixem de nos acompanhar nas próximas edições! Até mais!", "Apresentador", null, true, -1));
+
+        Cena cenaC = new Cena(3, "final_gabriela", "trilha_vitoria.mp3", falasCenaC);
+        cenaC.setIdPrimeiraFala(1);
+        cenaC.setIdUltimaaFala(10);
+        cenasCap10.add(cenaC);
+
+        List<Fala> falasCenaD = new ArrayList<>();
+        falasCenaD.add(new Fala(1, "Olá, telespectadores! O programa reserva para dois finalmente chegou a sua grande final! Isso mesmo, hoje as nossas competidoras irão escolher se querem ou não embarcar nesse romance.", "Apresentador", null, true, 2));
+        falasCenaD.add(new Fala(2, "Para isso, elas irão optar entre apertar o botão da desistência ou se envolver com o nosso protagonista " + prota.getNome(), "Apresentador", null, true, 3));
+        falasCenaD.add(new Fala(3, "Me diga aí, como estão suas expectativas para esse grande momento?", "Apresentador", null, true, 4));
+
+        List<Opcoes> opcoesExpectativaD = List.of(
+            new Opcoes(1, "“Eu estou empolgado. Acredito que causei uma boa impressão”", "Empolgado", Map.of(), 1, 0, false),
+            new Opcoes(2, "“Eu estou apreensivo, sinto que eu poderia ter tido uma melhor participação”.", "Apreensivo", Map.of(), 1, 0, false)
+        );
+        falasCenaD.add(new Dialogo(4, "Escolha sua expectativa:", "Sistema", null, false, opcoesExpectativaD, 5));
+
+        falasCenaD.add(new Fala(5, "Ok, vamos ver agora o que as garotas acham disso.\n\nApós a contagem regressiva, apertem ou não o botão. 1, 2, 3 e…..já\n\n*Mônica aperta o botão*", "Apresentador", null, true, 6));
+        falasCenaD.add(new Fala(6, "Vejam só! Parece que o " + prota.getNome() + " deu match com a participante Mônica…\n\nFale, querida, o que motivou a sua escolha?", "Apresentador", null, true, 7));
+        falasCenaD.add(new Fala(7, "“Eu não costumo me abrir facilmente, e acho que você conseguiu chegar mais perto de mim do que eu imaginava. Gosto da nossa relação, das coisas que descobrimos juntos e, principalmente, de quem eu sou quando estou com você. Quero continuar vivendo isso.”", "Mônica", null, true, 8));
+        falasCenaD.add(new Fala(8, "Maravilha! E você, " + prota.getNome() + " o que acha?", "Apresentador", null, true, 9));
+
+        List<Opcoes> opcoesRespostaD = List.of(
+            new Opcoes(1, "“Era exatamente o que eu esperava. A nossa conexão ao longo do programa estava evidente e sinto que os encontros serão promissores”", "Confiante", Map.of(), 1, 0, false),
+            new Opcoes(2, "“Não era o que eu esperava, mas acredito que poderemos formar uma ótima dupla”", "Pragmático", Map.of(), 1, 0, false)
+        );
+        falasCenaD.add(new Dialogo(9, "Escolha sua resposta:", "Sistema", null, false, opcoesRespostaD, 10));
+
+        falasCenaD.add(new Fala(10, "Que ótimo! Muito obrigada pela participação! Vocês acabaram de ganhar uma reserva de luxo para o restaurante O Sabor do Amor na Itália! Isso mesmo! Espero que aproveitem a viagem para construir uma boa relação e passear bastante!\n\nEnfim, agradeço ao público pela atenção… não deixem de nos acompanhar nas próximas edições! Até mais!", "Apresentador", null, true, -1));
+
+        Cena cenaD = new Cena(4, "final_monica", "trilha_vitoria.mp3", falasCenaD);
+        cenaD.setIdPrimeiraFala(1);
+        cenaD.setIdUltimaaFala(10);
+        cenasCap10.add(cenaD);
+
+        List<Fala> falasCenaE = new ArrayList<>();
+        falasCenaE.add(new Fala(1, "[PLANTÃO EXTRAORDINÁRIO]\n\nOlá, telespectadores.", "Apresentador", null, true, 2));
+        falasCenaE.add(new Fala(2, "Interrompemos nossa programação para trazer uma notícia inesperada sobre o futuro de Reserva para Dois.", "Apresentador", null, true, 3));
+        falasCenaE.add(new Fala(3, "Infelizmente, apesar de todos os esforços da produção, o programa não conseguiu alcançar a audiência esperada nesta temporada.", "Apresentador", null, true, 4));
+        falasCenaE.add(new Fala(4, "Após uma queda significativa no interesse do público, a produção tomou uma decisão difícil:\n\nReserva para Dois está oficialmente cancelado antes da grande final.", "Apresentador", null, true, 5));
+        falasCenaE.add(new Fala(5, "O desempenho e a postura de " + prota.getNome() + " ao longo do programa acabaram contribuindo para a perda de interesse dos telespectadores.", "Apresentador", null, true, 6));
+        falasCenaE.add(new Fala(6, "Lamentamos o ocorrido e agradecemos a todos que acompanharam o programa durante esta temporada.", "Apresentador", null, true, 7));
+        falasCenaE.add(new Fala(7, "Esperamos reencontrá-los em uma próxima edição, com novas histórias, novos participantes e, quem sabe, um protagonista capaz de conquistar o público.", "Apresentador", null, true, 8));
+        falasCenaE.add(new Fala(8, "Eu agradeço a atenção de todos.\n\nAté a próxima!", "Apresentador", null, true, -1));
+
+        Cena cenaE = new Cena(5, "plantao_cancelamento", "trilha_triste.mp3", falasCenaE);
+        cenaE.setIdPrimeiraFala(1);
+        cenaE.setIdUltimaaFala(8);
+        cenasCap10.add(cenaE);
+
+        List<Fala> falasCenaF = new ArrayList<>();
+        falasCenaF.add(new Fala(1, "Olá, telespectadores! O programa reserva para dois finalmente chegou a sua grande final! Isso mesmo, hoje as nossas competidoras irão escolher se querem ou não embarcar nesse romance.", "Apresentador", null, true, 2));
+        falasCenaF.add(new Fala(2, "Para isso, elas irão optar entre apertar o botão da desistência ou se envolver com o nosso protagonista " + prota.getNome(), "Apresentador", null, true, 3));
+        falasCenaF.add(new Fala(3, "Me diga aí, como estão suas expectativas para esse grande momento?", "Apresentador", null, true, 4));
+
+        List<Opcoes> opcoesExpectativaF = List.of(
+            new Opcoes(1, "“Eu estou empolgado. Acredito que causei uma boa impressão”", "Empolgado", Map.of(), 1, 0, false),
+            new Opcoes(2, "“Eu estou apreensivo, sinto que eu poderia ter tido uma melhor participação”.", "Apreensivo", Map.of(), 1, 0, false)
+        );
+        falasCenaF.add(new Dialogo(4, "Escolha sua expectativa:", "Sistema", null, false, opcoesExpectativaF, 5));
+
+        falasCenaF.add(new Fala(5, "Ok, vamos ver agora o que as garotas acham disso.\n\nApós a contagem regressiva, apertem ou não o botão. 1, 2, 3 e…..já\n\n*Ninguém aperta o botão*", "Apresentador", null, true, 6));
+        falasCenaF.add(new Fala(6, "Eita! Todas desistiram do nosso participante… me digam, o que aconteceu?", "Apresentador", null, true, 7));
+        falasCenaF.add(new Fala(7, "Ângela: Ele não soube priorizar nenhuma de nós.", "Ângela", null, true, 8));
+        falasCenaF.add(new Fala(8, "Gabriela: Isso mesmo… ele foi muito indeciso para um participante de um reality show tão disputado.", "Gabriela", null, true, 9));
+        falasCenaF.add(new Fala(9, "Mônica: Faltou esforço. Ele deveria ter sido mais atencioso.", "Mônica", null, true, 10));
+        falasCenaF.add(new Fala(10, "Márcia: Eu sabia que iria perder meu tempo aqui…", "Márcia", null, true, 11));
+        falasCenaF.add(new Fala(11, "Eita… mas que situação…\nDessa forma a nossa equipe agradece " + prota.getNome() + " e deseja mais sorte para a próxima vez.\n\nÉ isso, terminamos por aqui o nosso programa. Obrigada por nos acompanhar até aqui e desculpe pelo desfecho um tanto desastroso.\n\nVejo vocês na próxima edição!", "Narrador", null, true, -1));
+
+        Cena cenaF = new Cena(6, "final_ninguem", "trilha_triste.mp3", falasCenaF);
+        cenaF.setIdPrimeiraFala(1);
+        cenaF.setIdUltimaaFala(11);
+        cenasCap10.add(cenaF);
+
+        Capitulo capitulo10 = new Capitulo(10, "A Grande Decisão", 1, 6, cenasCap10);
         bancoDeCapitulos.put(10, capitulo10);
     }
 }

@@ -2,44 +2,49 @@ import java.util.List;
 
 public class ServiceCapitulo {
 
+    // Cap 7: a partir desse nível de antipatia o gabarito começa no modo difícil (cena 2)
+    private static final int ANTIPATIA_MODO_DIFICIL = 50;
+
+    // Cap 10
+    private static final int ANTIPATIA_CANCELAMENTO = 60;   // acima disso: programa cancelado
+    private static final int AFINIDADE_MINIMA_FINAL = 40;   // ninguém chegou nisso: ninguém fica
+
+    private static final int CENA_ANGELA = 1;
+    private static final int CENA_MARCIA = 2;
+    private static final int CENA_GABRIELA = 3;
+    private static final int CENA_MONICA = 4;
+    private static final int CENA_CANCELAMENTO = 5;
+    private static final int CENA_NINGUEM = 6;
+
     public void definirPrimeiraCena(Capitulo capitulo, Protagonista prota, List<Secundario> secundarios, ServiceCena serviceCena) {
         if (capitulo.getIdCapitulo() == 7) {
-            if (prota.getAntipatia() >= 50) {
-                capitulo.setIdPrimeiraFala(2);
-            } else {
-                capitulo.setIdPrimeiraFala(1);
-            }
+            capitulo.setIdPrimeiraFala(prota.getAntipatia() >= ANTIPATIA_MODO_DIFICIL ? 2 : 1);
         } else if (capitulo.getIdCapitulo() == 10) {
-            boolean empate = serviceCena.houveEmpate(secundarios);
-            Secundario maiorAf = serviceCena.verificarMaiorAfinidade(secundarios);
-            String nomeMaior = (maiorAf != null) ? maiorAf.getNome().toLowerCase() : "";
-            int idMaior = (maiorAf != null) ? maiorAf.getId() : 0;
+            capitulo.setIdPrimeiraFala(escolherFinalCap10(prota, secundarios, serviceCena));
+        }
+    }
 
-            boolean nenhumaChegou40 = true;
-            if (secundarios != null) {
-                for (Secundario s : secundarios) {
-                    if (s.getAfinidade() >= 40) {
-                        nenhumaChegou40 = false;
-                        break;
-                    }
-                }
-            }
 
-            int antipatia = prota.getAntipatia();
+    public int escolherFinalCap10(Protagonista prota, List<Secundario> secundarios, ServiceCena serviceCena) {
+        if (prota.getAntipatia() > ANTIPATIA_CANCELAMENTO) {
+            return CENA_CANCELAMENTO;
+        }
 
-            if ((empate && antipatia > 60) || (nenhumaChegou40 && antipatia > 60)) {
-                capitulo.setIdPrimeiraFala(6);
-            } else if (nomeMaior.equals("angela") && antipatia > 60 && idMaior >= 40) {
-                capitulo.setIdPrimeiraFala(1);
-            } else if (nomeMaior.equals("marcia") && antipatia > 60 && idMaior >= 40) {
-                capitulo.setIdPrimeiraFala(4);
-            } else if (nomeMaior.equals("monica") && antipatia > 60 && idMaior >= 40) {
-                capitulo.setIdPrimeiraFala(2);
-            } else if (nomeMaior.equals("gabriela") && antipatia > 60 && idMaior >= 40) {
-                capitulo.setIdPrimeiraFala(3);
-            } else if (antipatia < 60) {
-                capitulo.setIdPrimeiraFala(5);
-            }
+        if (serviceCena.houveEmpate(secundarios) || serviceCena.ninguemAtingiu(secundarios, AFINIDADE_MINIMA_FINAL)) {
+            return CENA_NINGUEM;
+        }
+
+        Secundario maior = serviceCena.verificarMaiorAfinidade(secundarios);
+        if (maior == null) {
+            return CENA_NINGUEM;
+        }
+
+        switch (maior.getId()) {
+            case ServiceCena.ID_ANGELA:   return CENA_ANGELA;
+            case ServiceCena.ID_MARCIA:   return CENA_MARCIA;
+            case ServiceCena.ID_GABRIELA: return CENA_GABRIELA;
+            case ServiceCena.ID_MONICA:   return CENA_MONICA;
+            default:                      return CENA_NINGUEM;
         }
     }
 }

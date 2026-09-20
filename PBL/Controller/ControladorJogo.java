@@ -17,7 +17,6 @@ public class ControladorJogo {
         jogoService.iniciarNovoJogo();
         
         if (jogo.getCapitulos() != null && !jogo.getCapitulos().isEmpty()) {
-            // Se quiser rodar todos os capítulos em sequência até o final:
             for (Capitulo capitulo : jogo.getCapitulos()) {
                 controladorCapitulos.iniciarCapitulo(capitulo, jogo.getProta(), jogo.getSecundarios());
             }

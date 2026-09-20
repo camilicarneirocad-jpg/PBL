@@ -492,7 +492,13 @@ public class RoteiroMasculinoRepository extends RoteiroRepository {
         List<Fala> falasCena2 = new ArrayList<>();
         falasCena2.add(new Fala(1, "Para fechar, teste de atenção no telão!", "Apresentador", null, true, 2));
 
-        List<Opcoes> opcoesQuiz = List.of(new Opcoes(1, "Tem pavor de água funda...", "", Map.of(angelaC6, 5), 1, 0, false));
+        List<Opcoes> opcoesQuiz = List.of(
+            new Opcoes(1, "Tem pavor de água funda e mar aberto, apesar de dar aulas de natação em piscinas rasas.", "", Map.of(angelaC6, 5), 1, 0, false),
+            new Opcoes(2, "É incapaz de segurar o choro ao assistir a comédias românticas clichês na TV.", "", Map.of(marciaC6, 5), 1, 0, false),
+            new Opcoes(3, "Começou a carreira gerindo um brechó online escondida dos pais no quarto de casa.", "", Map.of(monicaC6, 5), 1, 0, false),
+            new Opcoes(4, "Possui um medo obsessivo de que seu estilo acabe parecendo comercial demais.", "", Map.of(gabrielaC6, 5), 1, 0, false),
+            new Opcoes(5, "Tem uma tatuagem secreta de um código binário antigo na nuca que fez escondida aos dezessete anos.", "", Map.of(angelaC6, -5, monicaC6, -5, marciaC6, -5, gabrielaC6, -5), 1, 0, false)
+        );
         falasCena2.add(new Dialogo(2, "Selecione o fato verídico correspondente:", "Apresentador", null, false, opcoesQuiz, 3));
         falasCena2.add(new Fala(3, "Decisões tomadas! Reta final a seguir.", "Apresentador", null, true, -1));
 

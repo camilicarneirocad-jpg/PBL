@@ -8,7 +8,7 @@ public class ControladorCenas {
     public ControladorCenas(JogoView view, Jogo jogo) {
         this.view = view;
         this.jogo = jogo;
-        this.serviceCena = new ServiceCena();
+        this.serviceCena = new ServiceCena(jogo);
     }
 
     public ServiceCena getServiceCena() {
@@ -16,19 +16,20 @@ public class ControladorCenas {
     }
 
     public Cena executarCena(Capitulo capitulo, int idCenaAlvo, Protagonista prota, List<Secundario> secundarios) {
-        Secundario maiorAfinidade = serviceCena.verificarMaiorAfinidade(secundarios);
-        Secundario menorAfinidade = serviceCena.verificarMenorAfinidade(secundarios);
-    
-        serviceCena.verificarProxCena(capitulo, idCenaAlvo, 9, maiorAfinidade, menorAfinidade);
-        
         Cena cenaAtual = serviceCena.passarCenas(capitulo, idCenaAlvo);
 
         if (cenaAtual != null && cenaAtual.getFalas() != null && !cenaAtual.getFalas().isEmpty()) {
             Fala primeiraFala = cenaAtual.getFalas().get(0);
-            
-            ControladorDialogos controladorDialogos = new ControladorDialogos(view, jogo, cenaAtual);
+
+            ControladorDialogos controladorDialogos = new ControladorDialogos(view, jogo, cenaAtual, capitulo);
             controladorDialogos.iniciar(primeiraFala);
         }
+
+
+        if (cenaAtual != null) {
+            serviceCena.verificarProxCena(capitulo, cenaAtual, jogo.getSecundarios());
+        }
+
         return cenaAtual;
     }
 }

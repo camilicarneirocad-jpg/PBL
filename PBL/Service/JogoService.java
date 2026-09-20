@@ -20,7 +20,7 @@ public class JogoService {
     }
 
     public void iniciarNovoJogo() {
-        jogo.setNome("Reserva para Dois"); // Ajustado para definir o nome do jogo
+        jogo.setNome("Reserva para Dois");
         jogo.setInventario(new Inventario());
         jogo.getInventario().setItens(new ArrayList<>());
 

@@ -3,7 +3,7 @@ import java.util.List;
 public class Capitulo {
     private int idCapitulo;
     private String titulo;
-    private int idPrimeiraFala; // Continua sendo preenchido normalmente pelos repositórios
+    private int idPrimeiraFala;
     private int numeroCenas;
     private List<Cena> cenas;
 

@@ -1,6 +1,19 @@
 import java.util.List;
 
 public class ServiceCena {
+    private Jogo jogo;
+
+    public ServiceCena(Jogo jogo){
+        this.jogo=jogo;
+    }
+
+
+    public static final int ID_ANGELA = 1;
+    public static final int ID_MONICA = 2;
+    public static final int ID_MARCIA = 3;
+    public static final int ID_GABRIELA = 4;
+
+    private static final int SEM_PROXIMA = -1;
 
     public Secundario verificarMaiorAfinidade(List<Secundario> secundarios) {
         if (secundarios == null || secundarios.isEmpty()) {
@@ -10,7 +23,7 @@ public class ServiceCena {
         Secundario melhor = secundarios.get(0);
         for (int i = 1; i < secundarios.size(); i++) {
             Secundario atual = secundarios.get(i);
-            
+
             if (atual.getAfinidade() > melhor.getAfinidade()) {
                 melhor = atual;
             } else if (atual.getAfinidade() == melhor.getAfinidade()) {
@@ -22,11 +35,31 @@ public class ServiceCena {
         return melhor;
     }
 
+    public Secundario verificarMenorAfinidade(List<Secundario> secundarios) {
+        if (secundarios == null || secundarios.isEmpty()) {
+            return null;
+        }
+
+        Secundario pior = secundarios.get(0);
+        for (int i = 1; i < secundarios.size(); i++) {
+            Secundario atual = secundarios.get(i);
+
+            if (atual.getAfinidade() < pior.getAfinidade()) {
+                pior = atual;
+            } else if (atual.getAfinidade() == pior.getAfinidade()) {
+                if (atual.getExigencia() > pior.getExigencia()) {
+                    pior = atual;
+                }
+            }
+        }
+        return pior;
+    }
+
     public boolean houveEmpate(List<Secundario> secundarios) {
         if (secundarios == null || secundarios.size() < 2) {
             return false;
         }
-        
+
         int maiorAfinidade = secundarios.get(0).getAfinidade();
         int contagem = 0;
 
@@ -41,69 +74,61 @@ public class ServiceCena {
         return contagem > 1;
     }
 
-    public Secundario verificarMenorAfinidade(List<Secundario> secundarios) {
-        if (secundarios == null || secundarios.isEmpty()) {
-            return null;
+
+    public boolean ninguemAtingiu(List<Secundario> secundarios, int afinidadeMinima) {
+        if (secundarios == null) {
+            return true;
         }
-        
-        Secundario pior = secundarios.get(0);
-        for (int i = 1; i < secundarios.size(); i++) {
-            Secundario atual = secundarios.get(i);
-            
-            if (atual.getAfinidade() < pior.getAfinidade()) {
-                pior = atual;
-            } else if (atual.getAfinidade() == pior.getAfinidade()) {
-                if (atual.getExigencia() > pior.getExigencia()) {
-                    pior = atual;
-                }
+        for (Secundario s : secundarios) {
+            if (s.getAfinidade() >= afinidadeMinima) {
+                return false;
             }
         }
-        return pior;
+        return true;
     }
 
-    public void verificarProxCena(Capitulo capitulo, int idCena, int idFala, Secundario maiorAfinidade, Secundario menorAfinidade) {
-        Fala falaAtual = null;
-        if (capitulo.getCenas() != null) {
-            for (Cena c : capitulo.getCenas()) {
-                if (c.getId() == idCena && c.getFalas() != null) {
-                    for (Fala f : c.getFalas()) {
-                        if (f.getIdFala() == idFala) {
-                            falaAtual = f;
-                            break;
-                        }
-                    }
-                }
-            }
+
+    public void verificarProxCena(Capitulo capitulo, Cena cenaAtual, List<Secundario> secundarios) {
+        if (capitulo == null || cenaAtual == null) return;
+
+        int idCapitulo = capitulo.getIdCapitulo();
+        int idCena = cenaAtual.getId();
+        Integer proxima = null;
+
+        if (idCapitulo == 7 && (idCena == 1 || idCena == 2)) {
+            proxima = proximaCenaCap7(verificarMaiorAfinidade(secundarios));
+        } else if (idCapitulo == 8 && idCena == 1) {
+            proxima = proximaCenaCap8(verificarMenorAfinidade(secundarios));
         }
 
-        if (falaAtual == null) return;
+        if (proxima != null) {
+            cenaAtual.setIdProximacena(proxima);
+        }
+    }
 
-        if (capitulo.getIdCapitulo() == 7 && idCena == 1) {
-            if (maiorAfinidade != null) {
-                String nome = maiorAfinidade.getNome().toLowerCase();
-                if (nome.equals("angela")) {
-                    falaAtual.setIdProximaFala(3);
-                } else if (nome.equals("marcia")) {
-                    falaAtual.setIdProximaFala(5);
-                } else if (nome.equals("monica")) {
-                    falaAtual.setIdProximaFala(4);
-                } else if (nome.equals("gabriela")) {
-                    falaAtual.setIdProximaFala(6);
-                }
-            }
-        } else if (capitulo.getIdCapitulo() == 8 && idCena == 1) {
-            if (menorAfinidade != null) {
-                String nome = menorAfinidade.getNome().toLowerCase();
-                if (nome.equals("angela")) {
-                    falaAtual.setIdProximaFala(2);
-                } else if (nome.equals("marcia")) {
-                    falaAtual.setIdProximaFala(5);
-                } else if (nome.equals("monica")) {
-                    falaAtual.setIdProximaFala(3);
-                } else if (nome.equals("gabriela")) {
-                    falaAtual.setIdProximaFala(4);
-                }
-            }
+
+    public int proximaCenaCap7(Secundario maiorAfinidade) {
+        if (maiorAfinidade == null) return SEM_PROXIMA;
+
+        switch (maiorAfinidade.getId()) {
+            case ID_ANGELA:   jogo.getInventario().adicionarItem(new Item("Pingente","Pingente")); return 3; // cafe_angela
+            case ID_MONICA:   jogo.getInventario().adicionarItem(new Item("Caneta","Caneta")); return 4; // cafe_monica
+            case ID_MARCIA:   jogo.getInventario().adicionarItem(new Item("Marcador de Paginas","Marcador")); return 5; // cafe_marcia
+            case ID_GABRIELA: jogo.getInventario().adicionarItem(new Item("Caderno","Caderno")); return 6; // cafe_gabriela
+            default:          return SEM_PROXIMA;
+        }
+    }
+
+
+    public int proximaCenaCap8(Secundario menorAfinidade) {
+        if (menorAfinidade == null) return SEM_PROXIMA;
+
+        switch (menorAfinidade.getId()) {
+            case ID_ANGELA:   return 2; // 2a
+            case ID_MONICA:   return 3; // 2b
+            case ID_GABRIELA: return 4; // 2c
+            case ID_MARCIA:   return 5; // 2d
+            default:          return SEM_PROXIMA;
         }
     }
 
@@ -117,8 +142,4 @@ public class ServiceCena {
         }
         return null;
     }
-
-
-
-    
 }
