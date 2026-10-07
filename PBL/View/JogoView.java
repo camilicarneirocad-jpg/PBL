@@ -1,3 +1,7 @@
+package View;
+import Model.Capitulo;
+import Model.Fala;
+
 import java.util.Scanner;
 
 public class JogoView {

@@ -1,3 +1,4 @@
+package Model;
 public class Fala {
     private int idFala;
     private boolean eNarrativa;

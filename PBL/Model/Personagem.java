@@ -1,3 +1,4 @@
+package Model;
 public class Personagem {
     private String nome;
     private int id;

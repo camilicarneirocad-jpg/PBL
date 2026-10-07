@@ -1,3 +1,10 @@
+package Service;
+import Model.*;
+import Repository.RoteiroFemininoRepository;
+import Repository.RoteiroMasculinoRepository;
+import Repository.RoteiroRepository;
+import View.JogoView;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,3 +1,10 @@
+package Controller;
+
+import Model.Capitulo;
+import Model.Jogo;
+import Service.JogoService;
+import View.JogoView;
+
 public class ControladorJogo {
     private Jogo jogo;
     private JogoView view;

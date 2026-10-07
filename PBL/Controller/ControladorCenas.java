@@ -1,3 +1,9 @@
+package Controller;
+
+import Model.*;
+import Service.ServiceCena;
+import View.JogoView;
+
 import java.util.List;
 
 public class ControladorCenas {

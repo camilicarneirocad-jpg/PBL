@@ -1,3 +1,4 @@
+package Model;
 public class Protagonista extends Personagem {
     private int genero;
     private int antipatia;

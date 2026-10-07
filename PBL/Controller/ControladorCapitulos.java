@@ -1,3 +1,12 @@
+package Controller;
+import Model.Capitulo;
+import Model.Cena;
+import Model.Protagonista;
+import Model.Secundario;
+import Service.ServiceCapitulo;
+import View.JogoView;
+
+
 import java.util.List;
 
 public class ControladorCapitulos {

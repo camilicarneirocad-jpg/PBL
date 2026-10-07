@@ -1,3 +1,4 @@
+package Model;
 public class NPC extends Personagem {
     private String nomeNPC;
 

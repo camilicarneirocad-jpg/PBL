@@ -1,3 +1,8 @@
+package Service;
+import Model.Capitulo;
+import Model.Protagonista;
+import Model.Secundario;
+
 import java.util.List;
 
 public class ServiceCapitulo {

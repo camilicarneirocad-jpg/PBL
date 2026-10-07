@@ -1,3 +1,4 @@
+package Model;
 public class Secundario extends Personagem {
     private int afinidade;
     private int exigencia;

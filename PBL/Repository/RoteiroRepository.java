@@ -1,3 +1,7 @@
+package Repository;
+import Model.Capitulo;
+import Model.Fala;
+
 import java.util.HashMap;
 import java.util.Map;
 

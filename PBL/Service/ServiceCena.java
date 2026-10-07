@@ -1,3 +1,6 @@
+package Service;
+import Model.*;
+
 import java.util.List;
 
 public class ServiceCena {

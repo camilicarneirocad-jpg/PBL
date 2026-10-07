@@ -1,3 +1,9 @@
+package Controller;
+
+import Model.Menu;
+import Service.JogoService;
+import View.MenuView;
+
 public class ControladorMenu {
     private Menu menu;
     private MenuView view;

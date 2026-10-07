@@ -1,3 +1,10 @@
+package Controller;
+
+import Model.*;
+import Service.ServiceCena;
+import Service.ServiceDialogo;
+import View.JogoView;
+
 public class ControladorDialogos {
     private JogoView view;
     private Jogo jogo;

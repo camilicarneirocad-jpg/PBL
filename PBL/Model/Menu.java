@@ -1,3 +1,4 @@
+package Model;
 import java.util.Map;
 
 public class Menu {

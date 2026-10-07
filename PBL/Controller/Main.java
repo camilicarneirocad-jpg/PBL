@@ -1,3 +1,10 @@
+package Controller;
+import Model.Jogo;
+import Model.Menu;
+import Service.JogoService;
+import View.JogoView;
+import View.MenuView;
+
 import java.util.HashMap;
 import java.util.Map;
 

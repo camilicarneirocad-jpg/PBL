@@ -1,3 +1,4 @@
+package Model;
 public class Item {
     private String nome;
     private String imagem;

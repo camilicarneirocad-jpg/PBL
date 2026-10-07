@@ -1,3 +1,7 @@
+package Service;
+import Model.*;
+import View.JogoView;
+
 import java.util.List;
 import java.util.Map;
 
@@ -125,18 +129,7 @@ public class ServiceDialogo {
         return null;
     }
 
-    /**
-     * Define o idProximaFala das FALAS que vêm antes de um desdobramento e não têm próxima fixa.
-     * Chamada com a fala atual, antes de passar para a seguinte.
-     *
-     * Cap 9, cena 1: cada participante tem duas falas, "a" (não tem a maior afinidade) e
-     * "b" (tem a maior afinidade):
-     *   fala 2        -> Ângela:   b = 4, a = 3
-     *   falas 3 ou 4  -> Mônica:   b = 6, a = 5
-     *   falas 5 ou 6  -> Márcia:   b = 8, a = 7
-     *   falas 7 ou 8  -> Gabriela: b = 10, a = 9
-     *   falas 9 ou 10 -> 11 (fecha o capítulo; sem isso a "a" cairia na "b")
-     */
+
     public void verificarProxDialogo(Capitulo capitulo, int idCena, int idFalaAtual, Secundario maiorAfinidade) {
         if (capitulo == null || capitulo.getIdCapitulo() != 9 || idCena != 1) return;
 
