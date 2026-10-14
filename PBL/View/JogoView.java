@@ -1,7 +1,6 @@
 package View;
 import Model.Capitulo;
 import Model.Fala;
-
 import java.util.Scanner;
 
 public class JogoView {
@@ -32,8 +31,7 @@ public class JogoView {
 
     public String receberNome() {
         System.out.println("Digite o nome do personagem:");
-        String nome = leitor.nextLine();
-        return nome;
+        return leitor.nextLine();
     }
 
     public int escolherOpcao() {
@@ -50,15 +48,21 @@ public class JogoView {
         return opcao;
     }
 
-    public static void exibirInicioCapitulo(Capitulo capitulo) {
-        System.out.println("Iniciando capítulo: " + capitulo.getTitulo());
+    // --- MÉTODOS PARA O MENU DE PAUSA (TECLA 0 / ESC) ---
+    public int exibirMenuPausa() {
+        System.out.println("\n========================================");
+        System.out.println("               MENU DE PAUSA             ");
+        System.out.println("========================================");
+        System.out.println("[1] Salvar Jogo Manualmente");
+        System.out.println("[2] Retomar Partida");
+        System.out.println("[3] Sair para o Menu Principal");
+        System.out.println("========================================");
+        System.out.print("Escolha uma opção: ");
+        return receberOpcaoNumerica();
     }
 
-    public static void exibirMensagemErro(String mensagem) {
-        System.out.println("Erro: " + mensagem);
-    }
-
-    public static void exibirFala(Fala fala) {
-        System.out.println("\n[" + fala.getNomePersonagem() + "]: " + fala.getTexto());
+    public int escolherSlot() {
+        System.out.println("\nEscolha o slot de salvamento (1, 2 ou 3): ");
+        return receberOpcaoNumerica();
     }
 }

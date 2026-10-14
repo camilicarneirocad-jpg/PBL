@@ -18,17 +18,18 @@ public class Main {
 
         Map<Integer, String> opcoesMenu = new HashMap<>();
         opcoesMenu.put(1, "Novo Jogo");
-        opcoesMenu.put(2, "Créditos");
-        opcoesMenu.put(3, "Instruções");
-        opcoesMenu.put(4, "Sair");
+        opcoesMenu.put(2, "Carregar Jogo");
+        opcoesMenu.put(3, "Créditos");
+        opcoesMenu.put(4, "Instruções");
+        opcoesMenu.put(5, "Sair");
 
         Menu menuPrincipal = new Menu("Reserva Para Dois", opcoesMenu);
 
         ControladorMenu controladorMenu = new ControladorMenu(
-            menuPrincipal, 
-            menuView, 
-            jogoService, 
-            controladorJogo
+                menuPrincipal,
+                menuView,
+                jogoService,
+                controladorJogo
         );
 
         controladorMenu.iniciar();

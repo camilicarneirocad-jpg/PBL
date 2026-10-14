@@ -1,7 +1,10 @@
 package Model;
 import java.util.List;
+import java.io.Serializable;
 
-public class Jogo {
+public class Jogo implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private Inventario inventario;
     private String nome;
     private Protagonista prota;

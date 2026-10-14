@@ -17,18 +17,32 @@ public class ControladorJogo {
         this.view = view;
         this.jogoService = new JogoService(jogo, view);
         this.controladorCenas = new ControladorCenas(view, jogo);
-        this.controladorCapitulos = new ControladorCapitulos(view, controladorCenas);
+        this.controladorCapitulos = new ControladorCapitulos(view, controladorCenas, jogo);
     }
 
     public void iniciarFluxoPrincipal() {
         jogoService.iniciarNovoJogo();
-        
-        if (jogo.getCapitulos() != null && !jogo.getCapitulos().isEmpty()) {
-            for (Capitulo capitulo : jogo.getCapitulos()) {
-                controladorCapitulos.iniciarCapitulo(capitulo, jogo.getProta(), jogo.getSecundarios());
+        executarCapitulos();
+    }
+
+    public void retomarPartida(Jogo jogoCarregado) {
+        this.jogo = jogoCarregado;
+        this.controladorCenas = new ControladorCenas(view, this.jogo);
+        this.controladorCapitulos = new ControladorCapitulos(view, this.controladorCenas, this.jogo);
+        view.exibirTexto("\nPartida retomada com sucesso!");
+        executarCapitulos();
+    }
+
+    private void executarCapitulos() {
+        try {
+            if (jogo.getCapitulos() != null && !jogo.getCapitulos().isEmpty()) {
+                for (Capitulo capitulo : jogo.getCapitulos()) {
+                    controladorCapitulos.iniciarCapitulo(capitulo, jogo.getProta(), jogo.getSecundarios());
+                }
             }
+            view.exibirTexto("\nFim de jogo!");
+        } catch (SairParaMenuException e) {
+            view.exibirTexto("\nVoltando ao Menu Principal...");
         }
-        
-        view.exibirTexto("\nFim de jogo!");
     }
 }

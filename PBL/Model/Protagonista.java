@@ -1,5 +1,10 @@
 package Model;
-public class Protagonista extends Personagem {
+
+import java.io.Serializable;
+
+public class Protagonista extends Personagem implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private int genero;
     private int antipatia;
     private int idRoupa;
