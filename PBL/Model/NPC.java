@@ -1,5 +1,9 @@
 package Model;
-public class NPC extends Personagem {
+
+import java.io.Serializable;
+
+public class NPC extends Personagem implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String nomeNPC;
 
     public NPC(String nome, int id) {

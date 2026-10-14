@@ -1,5 +1,10 @@
 package Model;
-public class Secundario extends Personagem {
+
+import java.io.Serializable;
+
+public class Secundario extends Personagem implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private int afinidade;
     private int exigencia;
 

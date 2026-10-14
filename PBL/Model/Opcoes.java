@@ -1,7 +1,10 @@
 package Model;
+import java.io.Serializable;
 import java.util.Map;
 
-public class Opcoes {
+public class Opcoes implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private int id;
     private String nome;
     private String respostaCurta;

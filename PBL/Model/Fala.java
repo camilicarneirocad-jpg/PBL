@@ -1,5 +1,9 @@
 package Model;
-public class Fala {
+import java.io.Serializable;
+
+public class Fala implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private int idFala;
     private boolean eNarrativa;
     private String texto;
